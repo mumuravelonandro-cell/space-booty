@@ -1,0 +1,2208 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Lisboa 🇵🇹 — Guide de Voyage</title>
+<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,700;1,400&family=DM+Sans:wght@300;400;500;600&display=swap" rel="stylesheet">
+<style>
+:root {
+  --terracotta: #C4613A;
+  --azul: #2A5080;
+  --cream: #FAF6EF;
+  --dark: #1C1A17;
+  --gold: #D4A843;
+  --sage: #7A9E7E;
+  --sand: #E8D5B7;
+  --light-sand: #F5EFE4;
+  --text-muted: #8A7D70;
+  --white: #ffffff;
+  --tab-height: 48px;
+}
+* { margin:0; padding:0; box-sizing:border-box; }
+
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--dark);
+  min-height: 100vh;
+}
+
+/* ── MAIN HEADER ── */
+.header {
+  background: var(--dark);
+  padding: 22px 36px 0;
+  position: sticky;
+  top: 0;
+  z-index: 200;
+  box-shadow: 0 2px 24px rgba(0,0,0,.35);
+}
+.header-top {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.55rem;
+  color: var(--cream);
+}
+.logo span { color: var(--terracotta); }
+.dates {
+  font-size: 0.73rem;
+  color: var(--text-muted);
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.main-tabs {
+  display: flex;
+  gap: 2px;
+}
+.main-tab {
+  padding: 11px 26px;
+  font-size: .82rem;
+  font-weight: 500;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  cursor: pointer;
+  border-bottom: 3px solid transparent;
+  transition: all .2s;
+}
+.main-tab:hover { color: var(--cream); }
+.main-tab.active { color: var(--cream); border-bottom-color: var(--terracotta); }
+
+/* ── MAIN PANELS ── */
+.main-panel { display: none; }
+.main-panel.active { display: block; }
+
+/* ── DAY SUB-TABS (Visites) ── */
+.day-tabs-bar {
+  background: var(--light-sand);
+  border-bottom: 1px solid var(--sand);
+  padding: 0 36px;
+  display: flex;
+  gap: 0;
+  overflow-x: auto;
+  scrollbar-width: none;
+}
+.day-tabs-bar::-webkit-scrollbar { display: none; }
+.day-tab {
+  padding: 12px 20px;
+  font-size: .78rem;
+  font-weight: 600;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  color: var(--text-muted);
+  background: transparent;
+  border: none;
+  border-bottom: 3px solid transparent;
+  cursor: pointer;
+  white-space: nowrap;
+  transition: all .2s;
+}
+.day-tab:hover { color: var(--dark); }
+.day-tab.active { color: var(--terracotta); border-bottom-color: var(--terracotta); }
+
+/* ── DAY PANELS ── */
+.day-panel { display: none; }
+.day-panel.active { display: block; }
+
+/* ── MAP + CONTENT LAYOUT ── */
+.day-layout {
+  display: grid;
+  grid-template-columns: 1fr 380px;
+  min-height: calc(100vh - 120px);
+}
+.day-spots { 
+  padding: 32px 36px; 
+  overflow-y: auto;
+  max-height: calc(100vh - 120px);
+}
+.day-map {
+  position: sticky;
+  top: 120px;
+  height: calc(100vh - 120px);
+  border-left: 1px solid var(--sand);
+}
+.day-map iframe {
+  width: 100%;
+  height: 100%;
+  border: none;
+  display: block;
+}
+.map-placeholder {
+  width: 100%;
+  height: 100%;
+  background: var(--light-sand);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  color: var(--text-muted);
+  font-size: .85rem;
+  text-align: center;
+  padding: 24px;
+}
+.map-placeholder .map-icon { font-size: 2.5rem; }
+.map-placeholder a {
+  color: var(--azul);
+  font-weight: 600;
+  font-size: .85rem;
+  text-decoration: none;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--sand);
+  margin-top: 8px;
+  transition: background .2s;
+}
+.map-placeholder a:hover { background: var(--sand); }
+.map-btn {
+  color: var(--azul);
+  font-weight: 600;
+  font-size: .85rem;
+  text-decoration: none;
+  background: white;
+  padding: 10px 20px;
+  border-radius: 8px;
+  border: 1px solid var(--sand);
+  margin-top: 6px;
+  transition: background .2s;
+  cursor: pointer;
+  display: block;
+  width: 100%;
+  text-align: center;
+}
+.map-btn:hover { background: var(--sand); }
+.map-btn-main {
+  background: var(--azul) !important;
+  color: white !important;
+  border-color: var(--azul) !important;
+  font-size: .88rem !important;
+  padding: 12px 20px !important;
+}
+.map-btn-main:hover { background: #1e3d60 !important; }
+.orga-link {
+  color: var(--azul);
+  font-weight: 600;
+  text-decoration: underline;
+  cursor: pointer;
+  font-size: inherit;
+}
+.orga-link:hover { color: var(--terracotta); }
+.spot-hours {
+  font-size: .72rem;
+  color: var(--sage);
+  font-weight: 600;
+  letter-spacing: .03em;
+  margin-top: 1px;
+}
+
+/* ── DAY HEADER ── */
+.day-intro {
+  margin-bottom: 28px;
+}
+.day-intro-top {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  margin-bottom: 10px;
+}
+.day-circle {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: white;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-size: 1rem;
+  font-weight: 700;
+  flex-shrink: 0;
+}
+.day-intro h2 {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.5rem;
+  line-height: 1.2;
+}
+.day-intro-sub {
+  font-size: .78rem;
+  color: var(--text-muted);
+  letter-spacing: .08em;
+  text-transform: uppercase;
+  margin-top: 3px;
+}
+.day-intro-desc {
+  background: white;
+  border-left: 4px solid var(--terracotta);
+  border-radius: 0 10px 10px 0;
+  padding: 14px 18px;
+  font-size: .87rem;
+  color: var(--dark);
+  line-height: 1.65;
+  margin-bottom: 6px;
+}
+
+/* ── SPOT CARDS ── */
+.spots-list { display: flex; flex-direction: column; gap: 14px; }
+
+.spot-card {
+  background: white;
+  border-radius: 14px;
+  border: 1px solid rgba(0,0,0,.06);
+  overflow: hidden;
+  transition: box-shadow .2s, transform .2s;
+}
+.spot-card:hover {
+  box-shadow: 0 8px 28px rgba(0,0,0,.1);
+  transform: translateY(-2px);
+}
+.spot-card.highlight { border-left: 4px solid var(--gold); }
+.spot-card.church { border-left: 4px solid #7B1FA2; background: #FCF5FF; }
+
+.spot-header {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  padding: 14px 18px 0;
+}
+.spot-time {
+  font-size: .72rem;
+  font-weight: 700;
+  color: var(--terracotta);
+  letter-spacing: .05em;
+  white-space: nowrap;
+  min-width: 42px;
+}
+.spot-title {
+  font-weight: 600;
+  font-size: .97rem;
+  flex: 1;
+}
+.badges { display: flex; gap: 5px; flex-wrap: wrap; margin-top: 2px; }
+.badge {
+  font-size: .62rem;
+  font-weight: 700;
+  letter-spacing: .07em;
+  text-transform: uppercase;
+  padding: 2px 8px;
+  border-radius: 20px;
+}
+.b-free { background: #E8F5E9; color: #2E7D32; }
+.b-paid { background: #FFF3E0; color: #BF360C; }
+.b-warn { background: #FCE4EC; color: #B71C1C; }
+.b-church { background: #EDE7F6; color: #4527A0; }
+
+.spot-body {
+  padding: 10px 18px 16px 74px;
+}
+.spot-history {
+  font-size: .82rem;
+  color: #5a4e45;
+  line-height: 1.65;
+  margin-bottom: 8px;
+  font-style: italic;
+}
+.spot-tips {
+  font-size: .82rem;
+  color: var(--dark);
+  line-height: 1.6;
+}
+.spot-tips strong { color: var(--terracotta); font-weight: 600; }
+
+.tip-row {
+  display: flex;
+  gap: 8px;
+  align-items: flex-start;
+  margin-top: 5px;
+  font-size: .8rem;
+}
+.tip-row .ti { flex-shrink: 0; font-size: .9rem; }
+
+/* ── RESTOS ── */
+.restos-content { padding: 36px; max-width: 960px; margin: 0 auto; }
+.section-h {
+  font-family: 'Playfair Display', serif;
+  font-size: 1.15rem;
+  color: var(--azul);
+  margin: 32px 0 14px;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.section-h::after { content:''; flex:1; height:1px; background:var(--sand); }
+.restos-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(270px, 1fr));
+  gap: 14px;
+}
+.resto-card {
+  background: white;
+  border-radius: 12px;
+  padding: 18px;
+  border: 1px solid rgba(0,0,0,.06);
+  transition: transform .2s, box-shadow .2s;
+}
+.resto-card:hover { transform: translateY(-2px); box-shadow: 0 6px 20px rgba(0,0,0,.08); }
+.resto-card.star { border-left: 4px solid var(--gold); }
+.resto-name {
+  font-weight: 600;
+  font-size: .97rem;
+  margin-bottom: 3px;
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+  flex-wrap: wrap;
+}
+.price { font-size: .73rem; color: var(--gold); font-weight: 700; margin-left: auto; }
+.resto-type { font-size: .76rem; color: var(--terracotta); font-weight: 500; margin-bottom: 9px; }
+.resto-desc { font-size: .81rem; color: var(--text-muted); line-height: 1.6; }
+.resto-desc strong { color: var(--dark); }
+
+/* ── ORGA ── */
+.orga-content { padding: 36px; max-width: 780px; margin: 0 auto; }
+.orga-intro {
+  background: var(--dark);
+  color: white;
+  border-radius: 16px;
+  padding: 26px 30px;
+  margin-bottom: 36px;
+}
+.orga-intro h2 { font-family:'Playfair Display',serif; font-size:1.4rem; margin-bottom:6px; }
+.orga-intro p { font-size:.86rem; opacity:.8; line-height:1.6; }
+
+.orga-day { margin-bottom: 32px; }
+.orga-day-header {
+  background: var(--dark);
+  border-radius: 12px 12px 0 0;
+  padding: 14px 22px;
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+  user-select: none;
+}
+.orga-day-header:hover { background: #2a2724; }
+.orga-badge {
+  width: 36px; height: 36px;
+  border-radius: 50%;
+  background: var(--terracotta);
+  color: white;
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Playfair Display', serif;
+  font-weight: 700;
+  font-size: .95rem;
+  flex-shrink: 0;
+}
+.orga-day-title { flex: 1; }
+.orga-day-title h3 { font-family:'Playfair Display',serif; font-size:1.05rem; color:white; }
+.orga-day-title p { font-size:.73rem; color:#aaa; letter-spacing:.07em; text-transform:uppercase; margin-top:2px; }
+.orga-chevron { color: #aaa; font-size: 1rem; transition: transform .25s; }
+.orga-chevron.open { transform: rotate(180deg); }
+
+.orga-body {
+  background: white;
+  border-radius: 0 0 12px 12px;
+  border: 1px solid rgba(0,0,0,.06);
+  border-top: none;
+  overflow: hidden;
+}
+.orga-section {
+  padding: 16px 22px;
+  border-bottom: 1px solid var(--sand);
+}
+.orga-section:last-child { border-bottom: none; }
+
+.orga-section-title {
+  font-size: .69rem;
+  font-weight: 700;
+  letter-spacing: .12em;
+  text-transform: uppercase;
+  margin-bottom: 12px;
+  display: flex;
+  align-items: center;
+  gap: 7px;
+}
+.orga-section-title.red { color: #C62828; }
+.orga-section-title.blue { color: var(--azul); }
+.orga-section-title.green { color: var(--sage); }
+.orga-section-title.gold { color: var(--gold); }
+
+/* CHECKBOXES */
+.check-item {
+  display: flex;
+  gap: 12px;
+  align-items: flex-start;
+  padding: 7px 0;
+  border-bottom: 1px solid #f5f0e8;
+  cursor: pointer;
+  transition: background .15s;
+  border-radius: 6px;
+  padding-left: 4px;
+  padding-right: 4px;
+}
+.check-item:last-child { border-bottom: none; }
+.check-item:hover { background: var(--light-sand); }
+
+.check-item input[type="checkbox"] {
+  display: none;
+}
+.check-box {
+  width: 20px;
+  height: 20px;
+  border: 2px solid var(--sand);
+  border-radius: 5px;
+  flex-shrink: 0;
+  margin-top: 1px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  transition: all .2s;
+  background: white;
+}
+.check-item.checked .check-box {
+  background: var(--sage);
+  border-color: var(--sage);
+}
+.check-box::after {
+  content: '✓';
+  color: white;
+  font-size: .75rem;
+  font-weight: 700;
+  opacity: 0;
+  transition: opacity .15s;
+}
+.check-item.checked .check-box::after { opacity: 1; }
+
+.check-text { flex: 1; }
+.check-text strong {
+  font-size: .87rem;
+  font-weight: 600;
+  display: block;
+  margin-bottom: 2px;
+  transition: color .2s;
+}
+.check-item.checked .check-text strong {
+  color: var(--text-muted);
+  text-decoration: line-through;
+}
+.check-text span {
+  font-size: .78rem;
+  color: var(--text-muted);
+  line-height: 1.5;
+}
+.check-item.checked .check-text span {
+  color: #bbb;
+}
+
+.urgent-banner {
+  background: #FFF3E0;
+  border-left: 4px solid #E65100;
+  border-radius: 0 8px 8px 0;
+  padding: 10px 14px;
+  margin-bottom: 12px;
+  font-size: .83rem;
+  color: #BF360C;
+  font-weight: 500;
+}
+
+.tips-chips { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 4px; }
+.chip {
+  background: var(--light-sand);
+  color: var(--dark);
+  font-size: .76rem;
+  padding: 4px 12px;
+  border-radius: 20px;
+  font-weight: 500;
+}
+
+/* PROGRESS BAR */
+.progress-bar-wrap {
+  background: var(--light-sand);
+  border-radius: 20px;
+  height: 6px;
+  margin: 8px 0 14px;
+  overflow: hidden;
+}
+.progress-bar {
+  height: 100%;
+  background: var(--sage);
+  border-radius: 20px;
+  transition: width .4s ease;
+}
+.progress-label {
+  font-size: .73rem;
+  color: var(--text-muted);
+  margin-bottom: 4px;
+}
+
+/* RESPONSIVE */
+@media (max-width: 800px) {
+  .day-layout { grid-template-columns: 1fr; }
+  .day-map { display: none; }
+  .day-spots { max-height: none; padding: 20px; }
+  .header { padding: 16px 20px 0; }
+  .day-tabs-bar { padding: 0 16px; }
+  .restos-content, .orga-content { padding: 20px; }
+  .restos-grid { grid-template-columns: 1fr; }
+}
+
+/* ANIMATIONS */
+@keyframes fadeSlide {
+  from { opacity: 0; transform: translateY(10px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+.day-panel.active { animation: fadeSlide .25s ease; }
+</style>
+</head>
+<body>
+
+<!-- ════ HEADER ════ -->
+<div class="header">
+  <div class="header-top">
+    <div class="logo">Lisboa <span>🇵🇹</span></div>
+    <div class="dates">Mercredi 1 → Lundi 6 Avril 2026 · 4 personnes</div>
+  </div>
+  <div class="main-tabs">
+    <button class="main-tab active" onclick="showMain('visites',this)">🗺️ Visites</button>
+    <button class="main-tab" onclick="showMain('restos',this)">🍽️ Restos & Food</button>
+    <button class="main-tab" onclick="showMain('orga',this)">📋 Orga J-1</button>
+  </div>
+</div>
+
+<!-- ════════════════════════════════════════
+     PANEL 1 — VISITES
+════════════════════════════════════════ -->
+<div id="panel-visites" class="main-panel active">
+
+  <!-- Day sub-tabs -->
+  <div class="day-tabs-bar">
+    <button class="day-tab active" onclick="showDay('mercredi',this)">Me 1 · Arrivée</button>
+    <button class="day-tab" onclick="showDay('jeudi',this)">J 2 · Cascais</button>
+    <button class="day-tab" onclick="showDay('vendredi',this)">V 3 · Sintra</button>
+    <button class="day-tab" onclick="showDay('samedi',this)">Sa 4 · Belém 🃏</button>
+    <button class="day-tab" onclick="showDay('dimanche',this)">Di 5 · Pâques 🐣</button>
+    <button class="day-tab" onclick="showDay('lundi',this)">Lu 6 · Départ</button>
+  </div>
+
+  <!-- ── MERCREDI ── -->
+  <div id="day-mercredi" class="day-panel active">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle">Me</div>
+            <div>
+              <h2>Mercredi soir — Arrivée 21h20</h2>
+              <div class="day-intro-sub">Aéroport → Alfama · Dîner d'arrivée</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Atterrissage à 21h20. L'aéroport est à seulement 7 km d'Alfama — il n'y a pas lieu de stresser pour le transport. La soirée sera courte, juste le temps de poser les bagages et de goûter à Lisbonne.
+          </div>
+        </div>
+        <div class="spots-list">
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">21h20</div>
+              <div>
+                <div class="spot-title">✈️ Arrivée — Transport aéroport → Alfama</div>
+                <div class="badges"><span class="badge b-warn">Aérobus terminé à 21h</span></div>
+                <div class="spot-hours">⏰ Métro jusqu'à 1h du matin · Bolt/Uber 24h/24</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">L'aéroport de Lisbonne Humberto Delgado est remarquablement bien situé — à seulement 7 km du centre historique. L'Aérobus s'arrête à 21h, mais les autres options restent disponibles.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🥇</span> <strong>Bolt ou Uber — option recommandée pour vous</strong> : direct jusqu'en Alfama, ~15-20€ pour 4 avec bagages, ~20 min. Alfama est en montée avec des ruelles étroites — évitez de finir à pied avec les valises le soir</div>
+                <div class="tip-row"><span class="ti">🥈</span> <strong>Métro Ligne Rouge</strong> → changer à Alameda (ligne verte) → Santa Apolónia (la station la plus proche d'Alfama). ~30 min, ~1,85€/pers. Puis ~10-15 min à pied en montée avec les bagages</div>
+                <div class="tip-row"><span class="ti">🥉</span> <strong>Taxi</strong> : direct mais ~20-25€, et méfiance pour les arnaques — vérifier que le compteur est allumé immédiatement</div>
+                <div class="tip-row"><span class="ti">❌</span> <strong>Aérobus</strong> : s'arrête à 21h — vous arrivez trop tard</div>
+                <div class="tip-row"><span class="ti">💡</span> Si vous avez Bolt installé : commandez depuis l'aéroport dès que vous avez les bagages. Si attente longue, essayez Uber en parallèle</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">22h30</div>
+              <div>
+                <div class="spot-title">Dîner d'arrivée — Time Out Market</div>
+                <div class="badges"><span class="badge b-free">Entrée libre</span></div>
+                <div class="spot-hours">⏰ Ouvert jusqu'à minuit tous les jours</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le Time Out Market, installé dans l'ancien Mercado da Ribeira de 1892, est devenu depuis 2014 l'un des food courts les plus copiés au monde. L'idée — réunir sous un même toit les meilleurs chefs de la ville dans des stands accessibles à tous — a transformé ce marché centenaire en épicentre de la gastronomie lisboète.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🍽️</span> 25+ stands de chefs reconnus — bacalhau, pastéis, poulpe, burgers, sushis</div>
+                <div class="tip-row"><span class="ti">👨‍👩‍👧‍👦</span> Parfait quand le groupe n'est pas d'accord — chacun choisit son stand, on mange ensemble</div>
+                <div class="tip-row"><span class="ti">📍</span> Cais do Sodré — facilement accessible depuis Alfama (Uber ~5€ ou 20 min à pied)</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Mercredi soir — Arrivée</strong>
+          <p>Aéroport → Alfama → Time Out Market → Praça do Comércio</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7756,-9.1354/38.7136,-9.1318/38.7065,-9.1462/38.7073,-9.1364" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7756,-9.1354" target="_blank">✈️ Aéroport</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7065,-9.1462" target="_blank">📍 Time Out Market</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7073,-9.1364" target="_blank">📍 Praça do Comércio</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── JEUDI ── -->
+  <div id="day-jeudi" class="day-panel">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle">J</div>
+            <div>
+              <h2>Jeudi — Cascais</h2>
+              <div class="day-intro-sub">Train depuis Cais do Sodré · ~40 min · ~2,50€ AR · Toutes les 30 min</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Cascais, ancienne bourgade de pêcheurs devenue résidence d'été de la royauté portugaise à la fin du XIXe siècle. Le roi Louis Ier y installa sa cour en 1870, attirant dans son sillage l'aristocratie européenne et transformant ce petit port en villégiature de prestige. Aujourd'hui c'est une ville authentique et lumineuse, à 40 minutes de Lisbonne en train longeant l'estuaire du Tage.
+          </div>
+        </div>
+        <div class="spots-list">
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">10h00</div>
+              <div>
+                <div class="spot-title">Cascais — Centre historique & Marina</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le centre historique conserve ses ruelles blanches ornées d'azulejos, ses places animées et ses poissonneries colorées. La Cidadela, forteresse du XVIe siècle reconvertie en hôtel de luxe, domine la marina. Le musée du Conde de Castro Guimarães, ancienne demeure aristocratique léguée à la ville, abrite une belle collection de mobilier et d'art portugais.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚉</span> Train depuis <strong>Cais do Sodré</strong> — toutes les 30 min environ, ~2,50€ AR</div>
+                <div class="tip-row"><span class="ti">🏖️</span> La <strong>Praia da Rainha</strong> et la <strong>Praia da Ribeira</strong> sont à 5 min à pied du centre</div>
+                <div class="tip-row"><span class="ti">🐟</span> Déjeuner dans l'un des restaurants de fruits de mer du bord de mer</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">13h00</div>
+              <div>
+                <div class="spot-title">Boca do Inferno ⭐</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">La "Bouche de l'Enfer" tire son nom du bruit sourd et terrifiant que produisent les vagues de l'Atlantique en s'engouffrant dans une cavité naturelle creusée dans les falaises calcaires. Le poète Fernando Pessoa y aurait simulé sa mort en 1930 pour fuir ses créanciers — une mise en scène qui fit la une des journaux pendant des semaines avant qu'il ne réapparaisse tranquillement à Lisbonne.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚶</span> <strong>15 min à pied</strong> depuis la gare ou le centre de Cascais, le long du bord de mer</div>
+                <div class="tip-row"><span class="ti">⚠️</span> Ne pas s'aventurer sur les rochers — les vagues peuvent surgir sans prévenir</div>
+                <div class="tip-row"><span class="ti">📸</span> Meilleure lumière en fin d'après-midi avec le soleil dans le dos</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Itinéraire Jeudi — Cascais</strong>
+          <p>Cais do Sodré → Cascais → Boca do Inferno</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7063,-9.1463/38.6972,-9.4213/38.6913,-9.4307" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6972,-9.4213" target="_blank">📍 Cascais centre</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6913,-9.4307" target="_blank">📍 Boca do Inferno</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── VENDREDI ── -->
+  <div id="day-vendredi" class="day-panel">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle">V</div>
+            <div>
+              <h2>Vendredi — Sintra</h2>
+              <div class="day-intro-sub">Train Rossio → Sintra · ~40 min · ~5€ AR · Billets Quinta 14h + Pena 16h</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Sintra, classée UNESCO depuis 1995, est une ville de contes de fées perchée dans les collines de la Serra de Sintra. La plupart des visiteurs rushent directement aux palais et ratent la ville elle-même — ses ruelles médiévales, ses pâtisseries, le Palais National en plein centre. Le matin est pour flâner. Les palais, c'est l'après-midi.
+          </div>
+        </div>
+        <div class="spots-list">
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">9h40</div>
+              <div>
+                <div class="spot-title">Arrivée à Sintra — Ville historique & Palais National</div>
+                <div class="badges"><span class="badge b-free">Gratuit ext.</span><span class="badge b-paid">Palais : ~10€</span></div>
+                <div class="spot-hours">⏰ Train Rossio → Sintra toutes les 30-40 min · ~40 min de trajet</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le centre de Sintra, coincé dans un vallon entre les collines, est dominé par le Palácio Nacional — le seul palais royal portugais à avoir été habité sans interruption du Moyen Âge jusqu'au XXe siècle. Ses deux cheminées coniques blanches, visibles de loin, sont le symbole de la ville. À l'intérieur, la salle des Cygnes et la salle des Pies, avec leurs plafonds couverts d'azulejos uniques, témoignent de huit siècles d'histoire royale ininterrompue.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚶</span> Le centre se fait entièrement à pied — ruelles, boutiques de spécialités, fontaines, jardins</div>
+                <div class="tip-row"><span class="ti">🥐</span> <strong>Travesseiros</strong> (feuilletés à la crème d'amande) chez Piriquita — spécialité locale incontournable</div>
+                <div class="tip-row"><span class="ti">🏰</span> Vue sur le Château des Maures depuis le centre — gratuit depuis l'extérieur</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">11h30</div>
+              <div>
+                <div class="spot-title">Déjeuner en ville — restaurants du centre</div>
+                <div class="badges"><span class="badge b-paid">~15-20€/pers</span></div>
+                <div class="spot-hours">⏰ Prévoir d'être au départ pour la Quinta avant 13h45</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le centre de Sintra regorge de petits restaurants portugais, bien plus abordables et authentiques que les adresses touristiques près des palais. C'est le moment de souffler avant l'après-midi chargée.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🍽️</span> Tascas locales autour de la Praça da República — éviter les menus touristiques en vitrine</div>
+                <div class="tip-row"><span class="ti">🚗</span> Après déjeuner : Uber/Bolt jusqu'à la Quinta (~5 min, ~5€) — les routes sont trop raides pour marcher</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">14h00</div>
+              <div>
+                <div class="spot-title">Quinta da Regaleira ⭐ — créneau réservé</div>
+                <div class="badges"><span class="badge b-paid">~15€</span><span class="badge b-warn">Billet 14h00 !</span></div>
+                <div class="spot-hours">⏰ Créneau 14h00 · Prévoir 1h30-2h sur place</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Construite entre 1898 et 1910 pour le milliardaire António Augusto Carvalho Monteiro, surnommé "Monteiro des Millions" pour sa fortune faite dans le commerce du café au Brésil, la Quinta da Regaleira est une énigme architecturale délibérée. Monteiro, adepte de la franc-maçonnerie, de l'alchimie et de l'occultisme, a parsemé l'ensemble de symboles ésotériques. Le puits initiatique descend en spirale sur 27 mètres à travers neuf paliers — un voyage symbolique vers les profondeurs de la connaissance.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🎫</span> Billet 14h00 déjà réservé sur regaleira.pt ✅</div>
+                <div class="tip-row"><span class="ti">👟</span> Chaussures à semelles antidérapantes — le terrain est humide et les tunnels glissants</div>
+                <div class="tip-row"><span class="ti">⏱️</span> Prévoir 1h30 minimum pour les jardins, tunnels et le puits</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">16h00</div>
+              <div>
+                <div class="spot-title">Palais de Pena ⭐ — créneau réservé</div>
+                <div class="badges"><span class="badge b-paid">~20€</span><span class="badge b-warn">Billet 16h00 !</span></div>
+                <div class="spot-hours">⏰ Créneau 16h00 · Parc fermé à 18h30 · Arriver 30 min avant aux portes</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Commandé en 1842 par le roi Ferdinand II, artiste passionné et mari de la reine Marie II, le palais de Pena est le manifeste architectural du romantisme européen. Ses tourelles jaunes et rouges, ses coupoles, ses gargouilles et ses azulejos bleus créent une silhouette de conte de fées visible depuis toute la région de Lisbonne. Ferdinand II avait pour ambition de faire de Sintra la "Mont-Saint-Michel portugais".</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🎫</span> Billet 16h00 déjà réservé sur parquesdesintra.pt ✅</div>
+                <div class="tip-row"><span class="ti">🚗</span> Uber depuis la Quinta jusqu'aux portes du parc (~5 min, ~5€) — pas de marche possible</div>
+                <div class="tip-row"><span class="ti">🏰</span> Arriver aux portes du <strong>parc</strong> à 15h45 — il faut encore monter jusqu'au palais</div>
+                <div class="tip-row"><span class="ti">🌅</span> Les vues depuis les terrasses du palais sont spectaculaires en fin d'après-midi</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">19h00</div>
+              <div>
+                <div class="spot-title">Retour train Sintra → Rossio · Dîner à Lisbonne</div>
+                <div class="badges"><span class="badge b-paid">~2,50€/pers</span></div>
+                <div class="spot-hours">⏰ Trains toutes les 30-40 min · Arrivée Rossio ~19h40</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le retour en train depuis Sintra au coucher de soleil offre des vues magnifiques sur les collines boisées et la lumière dorée de l'Alentejo au loin.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🍽️</span> Arrivée ~19h40 à Rossio — parfait pour un dîner à 20h30 dans le centre</div>
+                <div class="tip-row"><span class="ti">💡</span> Ce soir ou demain soir : idéal pour <strong>Ponto Final</strong> (vue coucher de soleil sur Lisbonne depuis Cacilhas)</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Vendredi — Sintra</strong>
+          <p>Rossio → Sintra → Quinta 14h → Pena 16h</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7148,-9.1398/38.7969,-9.3906/38.7963,-9.3960/38.7876,-9.3906" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7969,-9.3906" target="_blank">📍 Centre de Sintra</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7963,-9.3960" target="_blank">📍 Quinta da Regaleira</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7876,-9.3906" target="_blank">📍 Palais de Pena</a>
+        </div>
+      </div>
+    </div>
+  <!-- ── SAMEDI ── -->
+  <div id="day-samedi" class="day-panel">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle">Sa</div>
+            <div>
+              <h2>Samedi — Belém & Cristo Rei 🃏</h2>
+              <div class="day-intro-sub">Tram 15E ou Train depuis Cais do Sodré · Lisboa Card 48h à activer aujourd'hui</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Belém, quartier mythique d'où partirent les caravelles de Vasco de Gama en 1497 vers les Indes. C'est ici que l'Empire portugais prit son essor. <strong>Activer la Lisboa Card ce matin</strong> — elle couvre tous les transports de la journée et l'entrée gratuite aux monuments (Jerónimos, Torre, MAAT...).
+          </div>
+        </div>
+        <div class="spots-list">
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">9h30</div>
+              <div>
+                <div class="spot-title">Mosteiro dos Jerónimos ⭐</div>
+                <div class="badges"><span class="badge b-paid">~18€</span><span class="badge b-warn">⚡ Réserver !</span></div>
+                <div class="spot-hours">⏰ Mar-dim 9h30-17h30 · Fermé lundi · <strong>Gratuit avec Lisboa Card</strong></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Commandé par le roi Manuel Ier en 1501 pour célébrer le retour triomphal de Vasco de Gama, ce chef-d'œuvre de l'architecture manuéline a nécessité un siècle de construction. Classé UNESCO en 1983, il abrite les tombeaux de Vasco de Gama et du poète Luís de Camões — le navigateur et le chantre de ses exploits, réunis pour l'éternité. Les colonnes de la salle capitulaire sont recouvertes de sculptures représentant les cordes, les sphères armillaires et les croix de l'Ordre du Christ — symboles de la puissance maritime portugaise.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🃏</span> <strong>Gratuit avec la Lisboa Card</strong> — présenter la carte à l'entrée</div>
+                <div class="tip-row"><span class="ti">🎫</span> Réserver tout de même sur museusemonumentos.pt pour éviter la queue — la Lisboa Card remplace le billet payant</div>
+                <div class="tip-row"><span class="ti">📸</span> Le cloître est le clou — arriver tôt pour la lumière matinale filtrant sur la pierre</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">11h15</div>
+              <div>
+                <div class="spot-title">Pastéis de Belém</div>
+                <div class="badges"><span class="badge b-paid">~1,50€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 8h-21h</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">La maison originale depuis 1837. Les moines du monastère voisin vendaient ces petites tartelettes à la crème pour survivre après la dissolution des ordres religieux en 1834. La recette originale, transmise de génération en génération, n'a jamais été divulguée — seuls trois pâtissiers la connaissent, et ils ne voyagent jamais ensemble par mesure de précaution.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🔥</span> Déguster <strong>TIÈDES</strong> avec cannelle + sucre glace — c'est la règle absolue</div>
+                <div class="tip-row"><span class="ti">💡</span> Le grand restaurant intérieur est souvent méconnu — la file va plus vite qu'il n'y paraît</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">12h00</div>
+              <div>
+                <div class="spot-title">Padrão dos Descobrimentos</div>
+                <div class="badges"><span class="badge b-free">Gratuit ext.</span><span class="badge b-paid">10€ sommet</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-19h · <strong>Gratuit avec Lisboa Card</strong></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Ce monument en forme de proue de caravelle fut érigé en 1960 pour commémorer le 500e anniversaire de la mort d'Henri le Navigateur. Les 33 figures sculptées sur les flancs représentent l'élite de l'expansion portugaise. Au sol, une rose des vents en marbre de 50 mètres de diamètre, offerte par l'Afrique du Sud en 1960, illustre les routes maritimes de l'empire.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🃏</span> Montée au sommet <strong>gratuite avec la Lisboa Card</strong></div>
+                <div class="tip-row"><span class="ti">👁️</span> Vue imprenable sur le Tage, Belém et le pont 25 Abril depuis le sommet</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">13h00</div>
+              <div>
+                <div class="spot-title">Torre de Belém</div>
+                <div class="badges"><span class="badge b-paid">8€</span></div>
+                <div class="spot-hours">⏰ Mar-dim 10h-17h30 · Fermé lundi · <strong>Gratuit avec Lisboa Card</strong></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Construite entre 1514 et 1520 sous le règne de Manuel Ier, cette tour servait à la fois de forteresse défensive, de phare et de porte d'entrée symbolique de Lisbonne depuis la mer. Ses dentelles de pierre manuéline en font l'un des édifices les plus photographiés du Portugal. Classée UNESCO en 1983. En rénovation actuellement — l'extérieur reste magnifique.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🃏</span> Entrée <strong>gratuite avec la Lisboa Card</strong></div>
+                <div class="tip-row"><span class="ti">📸</span> Meilleure vue depuis la berge, à marée basse quand on voit les fondations</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">14h30</div>
+              <div>
+                <div class="spot-title">Cristo Rei ⭐</div>
+                <div class="badges"><span class="badge b-paid">~8€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-18h · Ferry Cais do Sodré → Cacilhas (non inclus Lisboa Card)</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Inauguré en 1959 en remerciement pour que le Portugal ait été épargné par la Seconde Guerre mondiale, le Cristo Rei surplombe Lisbonne depuis la rive sud du Tage, les bras ouverts vers la ville. La statue mesure 28 mètres posée sur un piédestal de 75 mètres — 103 mètres au total. La vue depuis la plateforme est la meilleure sur Lisbonne.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">⛴️</span> <strong>Ferry depuis Cais do Sodré → Cacilhas</strong> (8 min, ~1,55€ — le ferry n'est PAS inclus dans la Lisboa Card) · puis bus 3001 (~20 min, ~1,50€)</div>
+                <div class="tip-row"><span class="ti">🚗</span> Alternative : Bolt depuis Belém directement (~20 min, ~12€) — plus simple</div>
+                <div class="tip-row"><span class="ti">⚠️</span> <strong>76 marches</strong> après l'ascenseur · Très venté en hauteur</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">17h30</div>
+              <div>
+                <div class="spot-title">MAAT — Musée d'Art, Architecture et Technologie</div>
+                <div class="badges"><span class="badge b-paid">15€</span></div>
+                <div class="spot-hours">⏰ Mer-lun 10h-19h · Fermé mardi · <strong>Gratuit avec Lisboa Card</strong></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">L'extension du MAAT dessinée par l'architecte britannique Amanda Levete, inaugurée en 2016, est une icône architecturale. Sa façade en carreaux céramiques blancs rappelle les azulejos portugais. Le bâtiment principal est l'ancienne centrale thermoélectrique de 1908, dont les machines et turbines cohabitent avec les œuvres d'art contemporain.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🃏</span> Entrée <strong>gratuite avec la Lisboa Card</strong></div>
+                <div class="tip-row"><span class="ti">🏛️</span> Le toit est accessible librement — vue magnifique sur le Tage</div>
+                <div class="tip-row"><span class="ti">🔌</span> L'ancienne centrale électrique de 1908 vaut le détour même sans être fan d'art</div>
+              </div>
+            </div>
+          </div>
+
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Samedi — Belém & Cristo Rei 🃏</strong>
+          <p>Jerónimos → Pastéis → Padrão → Torre → Ferry → Cristo Rei → MAAT</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.6979,-9.2067/38.6975,-9.2033/38.6936,-9.2057/38.6916,-9.2160/38.6979,-9.1933" target="_blank">🗺️ Itinéraire Belém</a>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7063,-9.1463/38.6769,-9.1522/38.6786,-9.1713" target="_blank">⛴️ Ferry → Cristo Rei</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6979,-9.2067" target="_blank">📍 Jerónimos</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6916,-9.2160" target="_blank">📍 Torre de Belém</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6786,-9.1713" target="_blank">📍 Cristo Rei</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6979,-9.1933" target="_blank">📍 MAAT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle">Sa</div>
+            <div>
+              <h2>Samedi — Belém & Cristo Rei 🃏</h2>
+              <div class="day-intro-sub">Lisboa Card · Tram 15E ou Train depuis Cais do Sodré · Journée le long du Tage</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Belém, quartier mythique d'où partirent les caravelles de Vasco de Gama en 1497 vers les Indes. C'est ici que l'Empire portugais prit son essor, ici que les explorateurs embrassaient leurs familles avant de disparaître des mois dans l'inconnu. <strong>Activer la Lisboa Card ce matin</strong> — elle couvre tous les transports du samedi et du dimanche, et l'entrée au Castelo São Jorge dimanche (15€/pers).
+          </div>
+        </div>
+        <div class="spots-list">
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">9h30</div>
+              <div>
+                <div class="spot-title">Mosteiro dos Jerónimos ⭐</div>
+                <div class="badges"><span class="badge b-paid">~18€</span><span class="badge b-warn">⚡ Réserver !</span></div>
+                <div class="spot-hours">⏰ Mar-dim 9h30-17h30 · Fermé lundi</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Commandé par le roi Manuel Ier en 1501 pour célébrer le retour triomphal de Vasco de Gama, ce chef-d'œuvre de l'architecture manuéline a nécessité un siècle de construction. Classé UNESCO en 1983, il abrite les tombeaux de Vasco de Gama et du poète Luís de Camões — le navigateur et le chantre de ses exploits, réunis pour l'éternité. Les colonnes de la salle capitulaire sont recouvertes de sculptures représentant les cordes, les sphères armillaires et les croix de l'Ordre du Christ — symboles de la puissance maritime portugaise.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🎫</span> <strong>Réserver en ligne sur museusemonumentos.pt</strong> — sans billet, attente de 1h+ certains jours</div>
+                <div class="tip-row"><span class="ti">⏰</span> Ouvert mar-dim 9h30-17h30 · <strong>Fermé le lundi</strong></div>
+                <div class="tip-row"><span class="ti">📸</span> Le cloître est le clou — arriver tôt pour la lumière matinale filtrant sur la pierre</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">11h15</div>
+              <div>
+                <div class="spot-title">Pastéis de Belém</div>
+                <div class="badges"><span class="badge b-paid">~1,50€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 8h-21h</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">La maison originale depuis 1837. Les moines du monastère voisin vendaient ces petites tartelettes à la crème pour survivre après la dissolution des ordres religieux en 1834. La recette originale, transmise de génération en génération, n'a jamais été divulguée — seuls trois pâtissiers la connaissent, et ils ne voyagent jamais ensemble par mesure de précaution.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🔥</span> Les déguster <strong>TIÈDES</strong> avec cannelle + sucre glace — c'est la règle absolue</div>
+                <div class="tip-row"><span class="ti">💡</span> Le grand restaurant intérieur est souvent méconnu des touristes — la file va plus vite qu'il n'y paraît</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">12h00</div>
+              <div>
+                <div class="spot-title">Padrão dos Descobrimentos</div>
+                <div class="badges"><span class="badge b-free">Gratuit ext.</span><span class="badge b-paid">10€ sommet</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-19h</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Ce monument en forme de proue de caravelle fut érigé en 1960 pour commémorer le 500e anniversaire de la mort d'Henri le Navigateur. Les 33 figures sculptées sur les flancs représentent l'élite de l'expansion portugaise : navigateurs, cartographes, poètes, soldats et missionnaires. Au sol, une rose des vents en marbre de 50 mètres de diamètre, offerte par l'Afrique du Sud en 1960, illustre les routes maritimes de l'empire.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">👁️</span> Depuis le sommet, vue imprenable sur le Tage, Belém et le pont 25 Abril</div>
+                <div class="tip-row"><span class="ti">📍</span> Entre les Jerónimos et la Torre — parfait pour enchaîner à pied</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">13h00</div>
+              <div>
+                <div class="spot-title">Torre de Belém</div>
+                <div class="badges"><span class="badge b-paid">8€</span></div>
+                <div class="spot-hours">⏰ Mar-dim 10h-17h30 · Fermé lundi</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Construite entre 1514 et 1520 sous le règne de Manuel Ier, cette tour servait à la fois de forteresse défensive, de phare et de porte d'entrée symbolique de Lisbonne depuis la mer. Sa position au milieu du Tage — elle était entourée d'eau à marée haute — et ses dentelles de pierre manuéline en font l'un des édifices les plus photographiés du Portugal. Classée UNESCO en 1983.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🔧</span> En rénovation actuellement — impossible d'entrer, mais la balade sur la rive est splendide</div>
+                <div class="tip-row"><span class="ti">📸</span> Meilleure vue depuis la berge, à marée basse quand on voit les fondations</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">14h30</div>
+              <div>
+                <div class="spot-title">Cristo Rei ⭐</div>
+                <div class="badges"><span class="badge b-paid">~8€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-18h · Ferry Cais do Sodré → Cacilhas + bus 3001</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Commandé par le régime de Salazar et inauguré en 1959 en remerciement pour que le Portugal ait été épargné par la Seconde Guerre mondiale, le Cristo Rei surplombe Lisbonne depuis la rive sud du Tage, les bras ouverts vers la ville. Inspiré du Christ Rédempteur de Rio de Janeiro, il mesure 28 mètres posé sur un piédestal de 75 mètres — 103 mètres au total au-dessus du sol.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">⛴️</span> <strong>Ferry depuis Cais do Sodré → Cacilhas</strong> (8 min, ~1,55€) puis bus 3001 (~20 min, ~1,50€) — pas depuis Belém !</div>
+                <div class="tip-row"><span class="ti">🚌</span> Alternative : <strong>Bolt directement depuis Belém</strong> (~20 min, ~12€) — plus simple pour les parents</div>
+                <div class="tip-row"><span class="ti">⚠️</span> <strong>76 marches</strong> après l'ascenseur · Très venté en hauteur</div>
+                <div class="tip-row"><span class="ti">👁️</span> La MEILLEURE vue sur Lisbonne de toute la région</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">17h30</div>
+              <div>
+                <div class="spot-title">Jardim do Rio (Almada) + retour ferry</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">De la rive d'Almada, Lisbonne se dévoile dans toute sa splendeur horizontale, dominée par le Castelo São Jorge et ponctuée par les coupoles du Panteão.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🌅</span> Vue directe sur le pont 25 Abril et Lisbonne — idéal coucher de soleil</div>
+                <div class="tip-row"><span class="ti">⛴️</span> Retour ferry vers Cais do Sodré (~1,55€ · 8 min)</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">19h00</div>
+              <div>
+                <div class="spot-title">MAAT — Musée d'Art, Architecture et Technologie</div>
+                <div class="badges"><span class="badge b-paid">15€</span></div>
+                <div class="spot-hours">⏰ Mer-lun 10h-19h · Fermé mardi</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">L'extension du MAAT dessinée par l'architecte britannique Amanda Levete, inaugurée en 2016, est devenue une icône architecturale en quelques années seulement. Sa façade en carreaux céramiques blancs rappelle les azulejos portugais. Le bâtiment principal est l'ancienne centrale thermoélectrique de 1908, dont les machines et turbines cohabitent avec les œuvres d'art contemporain.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🏛️</span> Le toit est librement accessible — belle vue sur le Tage</div>
+                <div class="tip-row"><span class="ti">📅</span> <strong>Fermé le mardi</strong> — ouvert 10h-19h</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Samedi — Belém & Cristo Rei 🃏</strong>
+          <p>Jerónimos → Pastéis → Padrão → Torre → Ferry → Cristo Rei → MAAT</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.6979,-9.2067/38.6975,-9.2033/38.6936,-9.2057/38.6916,-9.2160/38.6979,-9.1933" target="_blank">🗺️ Itinéraire Belém</a>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7063,-9.1463/38.6769,-9.1522/38.6786,-9.1713" target="_blank">⛴️ Ferry → Cristo Rei</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6979,-9.2067" target="_blank">📍 Jerónimos</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6916,-9.2160" target="_blank">📍 Torre de Belém</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6786,-9.1713" target="_blank">📍 Cristo Rei</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.6979,-9.1933" target="_blank">📍 MAAT</a>
+        </div>
+      </div>
+    </div>
+  </div>
+        <div class="spots-list">
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">10h00</div>
+              <div>
+                <div class="spot-title">Quinta da Regaleira ⭐</div>
+                <div class="badges"><span class="badge b-paid">~15€</span><span class="badge b-warn">⚡ Réserver créneau 10H !</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-17h30 · Créneau 10H impératif</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Construite entre 1898 et 1910 pour le milliardaire António Augusto Carvalho Monteiro, surnommé "Monteiro des Millions" pour sa fortune faite dans le commerce du café au Brésil, la Quinta da Regaleira est une énigme architecturale délibérée. Monteiro, adepte de la franc-maçonnerie, de l'alchimie et de l'occultisme, a parsemé l'ensemble de symboles ésotériques. Le puits initiatique, monument central du domaine, descend en spirale sur 27 mètres à travers neuf paliers — un voyage symbolique vers les profondeurs de la connaissance.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">⏰</span> Prendre <strong>IMPÉRATIVEMENT le créneau 10H</strong> sur regaleira.pt — premier arrivé au puits avant les files</div>
+                <div class="tip-row"><span class="ti">👟</span> Chaussures imperméables recommandées — le terrain est souvent humide et glissant</div>
+                <div class="tip-row"><span class="ti">⏱️</span> Prévoir minimum 2h — les jardins et tunnels sont labyrinthiques</div>
+                <div class="tip-row"><span class="ti">🎫</span> Réserver sur regaleira.pt — idéalement 7 jours à l'avance</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">13h00</div>
+              <div>
+                <div class="spot-title">Palais de Pena ⭐</div>
+                <div class="badges"><span class="badge b-paid">~20€</span><span class="badge b-warn">⚡ Réserver 7j avant !</span></div>
+                <div class="spot-hours">⏰ Tous les jours 9h30-18h30 · Arriver 30 min avant aux portes du parc</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Commandé en 1842 par le roi Ferdinand II, mari de la reine Marie II et lui-même artiste passionné, le palais de Pena est le manifeste architectural du romantisme européen. Ses tourelles jaunes et rouges, ses coupoles, ses gargouilles et ses azulejos bleus créent une silhouette de conte de fées visible depuis toute la région. Ferdinand II avait pour ambition de faire de Sintra la "Mont-Saint-Michel portugais" — il a peut-être réussi au-delà de ses espérances.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚪</span> <strong>Arriver aux portes du parc 30 min avant</strong> votre créneau — il faut encore monter jusqu'au palais</div>
+                <div class="tip-row"><span class="ti">🚗</span> Uber entre Quinta et Pena — les routes sont très raides, ne pas marcher</div>
+                <div class="tip-row"><span class="ti">🎫</span> Réserver sur parquesdesintra.pt — idéalement 7 jours à l'avance</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">16h00</div>
+              <div>
+                <div class="spot-title">Cabo da Roca</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le point le plus à l'ouest de l'Europe continentale — une stèle de granit porte l'inscription du poète Luís de Camões : "Ici, où la terre finit et où la mer commence." Pendant des siècles, les marins portugais ont regardé ce cap s'éloigner à tribord en quittant Lisbonne, sachant qu'il leur faudrait des mois, peut-être des années, avant de le revoir. C'est la dernière terre d'Europe que virent Magellan, Vasco de Gama, Bartolomeu Dias avant de s'aventurer vers l'inconnu.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚗</span> Bolt depuis Sintra (~15 min, ~12€)</div>
+                <div class="tip-row"><span class="ti">💨</span> Très venté — prévoir une veste même en plein soleil</div>
+                <div class="tip-row"><span class="ti">📜</span> Un certificat "j'étais au bout de l'Europe" peut s'acheter au centre de visiteurs pour souvenir</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">17h30</div>
+              <div>
+                <div class="spot-title">Praia da Adraga 🌅</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Encaissée entre deux falaises dorées protégées de l'Atlantique par un éperon rocheux naturel, la Praia da Adraga est régulièrement classée parmi les plus belles plages d'Europe. Son isolement relatif — pas de route directe depuis Lisbonne — lui a permis de conserver un caractère sauvage exceptionnel. Les vagues qui arrivent ici ont traversé plusieurs milliers de kilomètres d'Atlantique sans rencontrer aucune côte.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🚗</span> Bolt depuis Cabo da Roca (~10 min)</div>
+                <div class="tip-row"><span class="ti">🍽️</span> Restaurant sur place — parfait pour le dîner au coucher de soleil</div>
+                <div class="tip-row"><span class="ti">🌊</span> Baignade déconseillée — vagues puissantes et courants atlantiques imprévisibles</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Itinéraire Samedi — Sintra</strong>
+          <p>Rossio → Sintra → Quinta → Pena → Cabo da Roca → Adraga</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7148,-9.1398/38.7969,-9.3906/38.7963,-9.3960/38.7876,-9.3906/38.7804,-9.4989/38.8043,-9.4848" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7963,-9.3960" target="_blank">📍 Quinta da Regaleira</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7876,-9.3906" target="_blank">📍 Palais de Pena</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7804,-9.4989" target="_blank">📍 Cabo da Roca</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.8043,-9.4848" target="_blank">📍 Praia da Adraga</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── DIMANCHE ── -->
+  <div id="day-dimanche" class="day-panel">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle" style="background:var(--gold)">Di</div>
+            <div>
+              <h2>Dimanche de Pâques 🐣</h2>
+              <div class="day-intro-sub">Matin en ville · Messe 11h15 · Alfama & Miradouros l'après-midi</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Le dimanche de Pâques à Lisbonne est un événement à part. Les cloches des centaines d'églises de la ville, silencieuses depuis le Vendredi Saint en souvenir de la mort du Christ, sonnent toutes ensemble au matin de Pâques — un moment de cacophonie joyeuse qui traverse toute la ville. Les Lisboètes se retrouvent dans les rues d'Alfama, les familles s'embrassent sur le parvis des églises, les boulangeries vendent le folar de Pâques.
+          </div>
+        </div>
+
+        <div class="spots-list">
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">8h30</div>
+              <div>
+                <div class="spot-title">Petit-déjeuner de Pâques</div>
+                <div class="badges"><span class="badge b-paid">~15-20€</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Les cafés et boulangeries de Lisbonne ont une tradition matinale bien ancrée — le petit-déjeuner est une institution sociale, pris debout au comptoir pour les locaux, ou assis en terrasse pour les visiteurs chanceux.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">☕</span> <strong>Dear Breakfast</strong> (Chiado, ouvert dès 8h) — balcon avec vue sur les trams, pancakes caramel-banane</div>
+                <div class="tip-row"><span class="ti">🌟</span> <strong>Mil Sabores</strong> (Baixa, ouvert dès 7h) — meilleur rapport qualité/prix, portions généreuses</div>
+                <div class="tip-row"><span class="ti">🥐</span> <strong>Chercher le folar</strong> en boulangerie — pain sucré aux œufs, tradition pascale portugaise</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">9h30</div>
+              <div>
+                <div class="spot-title">Cathédrale Sé de Lisboa</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">La Sé, plus ancienne église de Lisbonne, fut commencée en 1147 par le roi Afonso Henriques immédiatement après la reconquête de la ville sur les Maures. Ses deux tours fortifiées rappellent qu'elle fut d'abord conçue comme une forteresse autant que comme un lieu de culte — les premiers chrétiens de la ville reconquise avaient besoin de protection. Elle a traversé séismes, incendies et siècles de transformations, conservant une majesté robuste et austère que les ornements baroques n'ont pas réussi à adoucir totalement.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🔔</span> <strong>Matin de Pâques</strong> — les cloches sonnent à nouveau après le silence de la Semaine Sainte. Moment unique !</div>
+                <div class="tip-row"><span class="ti">🕊️</span> Ambiance particulière avec les fidèles qui se rendent à la messe du matin</div>
+                <div class="tip-row"><span class="ti">🐱</span> Les chats d'Alfama se prélassent sur le parvis — photogénique à souhait</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">10h15</div>
+              <div>
+                <div class="spot-title">Balade dans Alfama — Santa Luzia · Portas do Sol · Elevador da Bica</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span><span class="badge b-paid">Bica : ~3€</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Alfama est le seul quartier de Lisbonne qui ait survécu au séisme de 1755. Son réseau de ruelles étroites en calçada (pavés calcaires) remonte à l'époque maure — "Al-Hamma" signifiait "les bains chauds" en arabe, référence aux sources thermales qui alimentaient des hammams dans le quartier. L'Elevador da Bica, funiculaire de 1892, est le dernier des ascenseurs historiques encore en service.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🌸</span> <strong>Miradouro de Santa Luzia</strong> — terrasse couverte de bougainvilliers avec vue sur les toits d'Alfama et le Tage. Azulejos historiques sur les murs représentant la Lisbonne d'avant le séisme. Ambiance très romantique le matin.</div>
+                <div class="tip-row"><span class="ti">🌅</span> <strong>Largo das Portas do Sol</strong> — juste au-dessus de Santa Luzia, vue dégagée sur le dôme blanc de São Vicente de Fora et les toits orange d'Alfama. C'est l'une des cartes postales les plus iconiques de Lisbonne. Bar Portas do Sol sur place.</div>
+                <div class="tip-row"><span class="ti">📸</span> <strong>La photo de l'Elevador da Bica</strong> se prend depuis le bas de la rue — le funiculaire jaune dans la ruelle étroite</div>
+                <div class="tip-row"><span class="ti">🎵</span> On entend souvent du fado s'échapper des fenêtres ouvertes le matin dans Alfama</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card church">
+            <div class="spot-header">
+              <div class="spot-time">11h00</div>
+              <div>
+                <div class="spot-title">⛪ Messe de Pâques EN FRANÇAIS — Église Saint-Louis des Français</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span><span class="badge b-church">Arriver à 11h00 !</span></div>
+                <div class="spot-hours">⏰ Dimanche 5 avril · Messe à 11h15 · Beco de São Luís da Pena 34</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">L'église Saint-Louis des Français, nichée dans la partie basse de la ville, fut fondée au XVIIe siècle par la communauté française de Lisbonne — alors nombreuse et influente dans le commerce maritime. Détruite par le grand séisme de 1755, elle fut reconstruite dans les années qui suivirent, conservant une architecture sobre et élégante. Elle est depuis lors le cœur spirituel de la communauté francophone de Lisbonne — Français, Belges, Suisses, Libanais, Sénégalais s'y retrouvent chaque dimanche.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">📍</span> Beco de São Luís da Pena 34 — facilement accessible à pied depuis Alfama</div>
+                <div class="tip-row"><span class="ti">⏰</span> <strong>Messe à 11h15 — arriver à 11h00</strong> — places limitées le dimanche de Pâques</div>
+                <div class="tip-row"><span class="ti">👗</span> Tenue correcte — épaules couvertes, pas de short</div>
+                <div class="tip-row"><span class="ti">🎶</span> Les chants seront beaux — moment rare de se retrouver entre francophones au cœur de Lisbonne</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">12h30</div>
+              <div>
+                <div class="spot-title">Carmo Rooftop — verre après la messe</div>
+                <div class="badges"><span class="badge b-free">Gratuit d'accès</span></div>
+                <div class="spot-hours">⏰ Tous les jours 10h-0h30 (1h30 ven/sam)</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le Carmo Rooftop occupe la terrasse qui donne directement sur les ruines gothiques du Convento do Carmo — détruit par le séisme de 1755 et délibérément laissé à ciel ouvert, trop beau dans ses ruines pour être reconstruit.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">💡</span> <strong>Astuce d'or :</strong> même vue que l'Ascenseur Santa Justa (6€ + queue) — ici c'est gratuit !</div>
+                <div class="tip-row"><span class="ti">🍷</span> Un verre de vin vert en terrasse avec cette vue = moment parfait post-messe de Pâques</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">13h15</div>
+              <div>
+                <div class="spot-title">Topo Chiado ⭐ — rooftop bar avec vue panoramique</div>
+                <div class="badges"><span class="badge b-free">Gratuit d'accès</span></div>
+                <div class="spot-hours">⏰ Tous les jours 12h-0h (1h ven/sam) · 6e étage, Terraço do Chiado</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le Topo Chiado est installé au sommet du bâtiment juste en face de l'Ascenseur de Santa Justa — il offre donc une vue frontale sur l'ascenseur lui-même, sur les ruines du Carmo, et un panorama à 360° sur les toits du Chiado et les collines d'Alfama. C'est l'un des rooftops les plus emblématiques de Lisbonne, idéal pour le déjeuner ou l'apéritif.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🏙️</span> Vue à 360° sur les toits du Chiado, l'ascenseur Santa Justa et Alfama — un des meilleurs rooftops de Lisbonne</div>
+                <div class="tip-row"><span class="ti">🍽️</span> Cuisine correcte, mais c'est surtout la vue qu'on vient chercher — préférer un verre et un plat léger</div>
+                <div class="tip-row"><span class="ti">📍</span> Rua do Carmo 1, 6e étage — entrée discrète, prendre l'ascenseur</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">14h00</div>
+              <div>
+                <div class="spot-title">Miradouro da Senhora do Monte ⭐</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le miradouro de la Senhora do Monte, au sommet de la plus haute colline d'Alfama, offre le panorama le plus complet sur Lisbonne. L'église Santa Luzia do Monte qui le jouxte est l'une des plus anciennes de la ville — une tradition veut que les femmes qui veulent trouver un mari s'agenouillent devant la statue de la Vierge et la caressent de leur genoux gauche.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">⭐</span> <strong>4,8⭐</strong> — le meilleur panorama de Lisbonne, c'est un consensus</div>
+                <div class="tip-row"><span class="ti">🍺</span> Kiosque sur place pour une bière fraîche avec la vue</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">15h00</div>
+              <div>
+                <div class="spot-title">Miradouro da Graça</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le miradouro da Graça, adjacent au couvent du même nom fondé en 1271, est l'un des plus anciens points de vue de la ville. C'est depuis ici que les armées maures observaient l'avancée des croisés lors de la conquête de Lisbonne en 1147 — les soldats du roi Afonso Henriques qui s'emparèrent de la ville venaient des quatre coins de l'Europe, attirés par la promesse du pillage.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🏰</span> Vue sur le Castelo São Jorge en premier plan et l'estuaire au loin</div>
+                <div class="tip-row"><span class="ti">🍺</span> Bar avec terrasse ombragée sur place</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">16h00</div>
+              <div>
+                <div class="spot-title">🍫 Landeau Chocolate — goûter</div>
+                <div class="badges"><span class="badge b-paid">~6-8€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 12h-19h · Rua das Flores 70, Chiado</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Landeau est une institution lisboète devenue culte. Sa fondatrice, d'origine française, a créé un unique gâteau au chocolat — dense, humide, recouvert d'une fine couche de cacao — qui a envahi tous les classements des meilleures pâtisseries de Lisbonne. Un seul gâteau, une seule obsession, une file d'attente quasi permanente.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🎂</span> <strong>Un seul produit</strong> : le gâteau au chocolat, en part ou à emporter entier. Inoubliable.</div>
+                <div class="tip-row"><span class="ti">⏱️</span> File d'attente possible — prévoir 15-20 min · Prendre une part sur place avec un café</div>
+                <div class="tip-row"><span class="ti">📍</span> Rua das Flores 70, Chiado — à 5 min à pied du Carmo et du Topo</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">16h45</div>
+              <div>
+                <div class="spot-title">Miradouro de São Pedro de Alcântara</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+                <div class="spot-hours">⏰ Ouvert 24h/24 · Bairro Alto</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Ce belvédère en terrasse, bordé d'azulejos et d'une fontaine baroque du XVIIIe siècle, offre une vue directe sur la colline du Castelo São Jorge de l'autre côté de la ville. Il est l'un des rares miradouros de Lisbonne à avoir un jardin soigné avec bancs et végétation — ce qui en fait un des plus agréables pour s'asseoir et regarder la ville s'allumer en fin d'après-midi.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🏰</span> Vue face au Castelo São Jorge — belle perspective sur les deux collines en vis-à-vis</div>
+                <div class="tip-row"><span class="ti">🌿</span> Jardin avec bancs et fontaine — plus tranquille que les autres miradouros touristiques</div>
+                <div class="tip-row"><span class="ti">📍</span> Rua de São Pedro de Alcântara, Bairro Alto — juste à côté du Elevador da Glória (ne pas utiliser, accident 2025)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">17h30</div>
+              <div>
+                <div class="spot-title">Miradouro de Santa Catarina — Coucher de soleil 🌅</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+                <div class="spot-hours">⏰ Ouvert 24h/24 · Calçada do Combro</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le Miradouro de Santa Catarina, surnommé "Miradouro do Adamastor" d'après la statue du géant mythologique de Camões qui y trône, est le spot préféré des Lisboètes pour le coucher de soleil côté Tage et pont 25 Abril. L'atmosphère y est bohème et décontractée — musiciens de rue, étudiants avec leur bière, touristes et locaux mélangés regarder le soleil plonger dans l'Atlantique.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🌅</span> <strong>Vue face au Tage et au pont 25 Abril</strong> — idéal pour le coucher de soleil, orientation plein ouest</div>
+                <div class="tip-row"><span class="ti">🎸</span> Ambiance musicale spontanée quasi tous les soirs — guitares, fado improvisé</div>
+                <div class="tip-row"><span class="ti">🍺</span> Kiosque Santa Catarina sur place, très animé en fin de journée</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">16h30</div>
+              <div>
+                <div class="spot-title">Castelo de São Jorge</div>
+                <div class="badges"><span class="badge b-paid">15€</span></div>
+                <div class="spot-hours">⏰ Tous les jours 9h-21h (oct-mars 9h-18h)</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Le château São Jorge domine Lisbonne depuis le IIe siècle avant J.-C. — il fut tour à tour forteresse romaine, palais wisigoth, citadelle maure et résidence royale portugaise. C'est ici que Vasco de Gama fut reçu en triomphe à son retour des Indes en 1499 — le roi Manuel Ier attendait sur ce promontoire la nouvelle qui allait transformer le Portugal en puissance mondiale. Les paons qui déambulent librement dans les cours sont les descendants de ceux qu'offraient les rois étrangers à la couronne portugaise.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🦚</span> Les paons en liberté sont la surprise préférée des visiteurs — ils tolèrent qu'on les approche</div>
+                <div class="tip-row"><span class="ti">👁️</span> Vue 360° sur toute la ville — prendre le temps de l'explorer lentement</div>
+                <div class="tip-row"><span class="ti">📱</span> Guide audio gratuit téléchargeable sur le site du château</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card highlight">
+            <div class="spot-header">
+              <div class="spot-time">19h30</div>
+              <div>
+                <div class="spot-title">Miradouro do Monte Agudo 🌅</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Moins connu que ses voisins, le Miradouro do Monte Agudo (Monte Aiguisé) offre un coucher de soleil exceptionnel sur les toits orange d'Alfama et le Tage qui s'embrasse en or. C'est le favori des Lisboètes eux-mêmes — les touristes n'ont pas encore totalement découvert ce spot.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🌅</span> <strong>Spot secret des Lisboètes</strong> pour le coucher de soleil — beaucoup moins de monde que Senhora do Monte</div>
+                <div class="tip-row"><span class="ti">🍺</span> Kiosque sur place ouvert jusqu'à 22h (2h ven/sam)</div>
+              </div>
+            </div>
+          </div>
+
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">21h00</div>
+              <div>
+                <div class="spot-title">Pink Street</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">La Rua Nova do Carvalho, peinte en rose depuis 2011 pour réhabiliter cette ancienne rue mal-famée du Cais do Sodré, est devenue l'une des artères les plus festives de Lisbonne. Le quartier du Cais do Sodré était historiquement le quartier des marins et des prostituées — une réputation sulfureuse qui lui confère aujourd'hui un caractère brut et authentique que les bars branchés ont su préserver.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">🌙</span> <strong>Le soir uniquement</strong> — la journée c'est désert et sans intérêt</div>
+                <div class="tip-row"><span class="ti">🎉</span> Ambiance unique pour finir le dimanche de Pâques</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Itinéraire Dimanche — Pâques</strong>
+          <p>Sé → Santa Luzia → Bica → St-Louis → Topo → Miradouros → Landeau → São Pedro → Santa Catarina → Castelo → Monte Agudo → Pink Street</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7097,-9.1325/38.7117,-9.1302/38.7095,-9.1456/38.7161,-9.1400/38.7114,-9.1405/38.7192,-9.1328/38.7165,-9.1316/38.7123,-9.1404/38.7167,-9.1467/38.7134,-9.1473/38.7139,-9.1335/38.7261,-9.1315/38.7072,-9.1438" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7117,-9.1302" target="_blank">📍 Santa Luzia / Portas do Sol</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7161,-9.1400" target="_blank">⛪ St-Louis des Français</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7114,-9.1405" target="_blank">📍 Topo Chiado</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7192,-9.1328" target="_blank">📍 Senhora do Monte</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7123,-9.1404" target="_blank">🍫 Landeau Chocolate</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7167,-9.1467" target="_blank">📍 São Pedro de Alcântara</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7134,-9.1473" target="_blank">🌅 Santa Catarina</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7139,-9.1335" target="_blank">📍 Castelo São Jorge</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7261,-9.1315" target="_blank">📍 Monte Agudo</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7072,-9.1438" target="_blank">📍 Pink Street</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- ── LUNDI ── -->
+  <div id="day-lundi" class="day-panel">
+    <div class="day-layout">
+      <div class="day-spots">
+        <div class="day-intro">
+          <div class="day-intro-top">
+            <div class="day-circle" style="background:var(--sage)">Lu</div>
+            <div>
+              <h2>Lundi matin — Départ</h2>
+              <div class="day-intro-sub">Dernière matinée · LX Factory · Natas à emporter</div>
+            </div>
+          </div>
+          <div class="day-intro-desc">
+            Une dernière matinée pour absorber l'atmosphère de Lisbonne avant l'aéroport. Le LX Factory est l'un de ces lieux qui résument parfaitement l'esprit de la ville contemporaine — créatif, un peu décadent, nostalgique et résolument tourné vers l'avenir.
+          </div>
+        </div>
+        <div class="spots-list">
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">10h30</div>
+              <div>
+                <div class="spot-title">LX Factory</div>
+                <div class="badges"><span class="badge b-free">Gratuit</span></div>
+                <div class="spot-hours">⏰ Lun-ven 10h30-22h30 · Week-end 9h-22h30</div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">Installé dans les anciens ateliers de l'imprimerie Cia de Fiação e Tecidos Lisbonense (1846), le LX Factory est un village créatif d'un genre particulier. Les machines à tisser ont laissé place aux boutiques de design, librairies indépendantes, ateliers d'artisans et restaurants. Le dimanche est sa journée phare avec le marché hebdomadaire — mais le lundi matin reste agréable, plus calme, pour voir l'endroit dans son quotidien.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">📚</span> La librairie Ler Devagar, avec sa bicyclette suspendue et ses millions de livres, est un arrêt obligatoire</div>
+                <div class="tip-row"><span class="ti">⏰</span> Ouvert dès 10h30 le lundi</div>
+                <div class="tip-row"><span class="ti">🏭</span> Observer l'architecture industrielle — les poutres métalliques et les briques sont du XIXe siècle</div>
+              </div>
+            </div>
+          </div>
+          <div class="spot-card">
+            <div class="spot-header">
+              <div class="spot-time">12h00</div>
+              <div>
+                <div class="spot-title">Nat'elier — Pastéis de nata à emporter</div>
+                <div class="badges"><span class="badge b-paid">~1,50€/pièce</span></div>
+              </div>
+            </div>
+            <div class="spot-body">
+              <div class="spot-history">L'ultime pastel de nata avant l'aéroport — et pourquoi ne pas en ramener quelques boîtes pour la famille ? Les natas se conservent plusieurs heures à température ambiante dans leur boîte.</div>
+              <div class="spot-tips">
+                <div class="tip-row"><span class="ti">⭐</span> <strong>4,9⭐</strong> — nombreux les considèrent meilleurs que Belém !</div>
+                <div class="tip-row"><span class="ti">🎁</span> Boîtes de 6 ou 12 pour rapporter en souvenir</div>
+                <div class="tip-row"><span class="ti">🚇</span> Métro Ligne Rouge direction Aéroport — 45 min depuis le centre</div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="day-map">
+        <div class="map-placeholder">
+          <div class="map-icon">🗺️</div>
+          <strong>Lundi — Départ</strong>
+          <p>LX Factory → Nat'elier → Aéroport</p>
+          <a class="map-btn map-btn-main" href="https://www.google.com/maps/dir/38.7035,-9.1788/38.7131,-9.1396/38.7756,-9.1354" target="_blank">🗺️ Itinéraire complet</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7035,-9.1788" target="_blank">📍 LX Factory</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7131,-9.1396" target="_blank">📍 Nat'elier</a>
+          <a class="map-btn" href="https://www.google.com/maps/search/?api=1&query=38.7756,-9.1354" target="_blank">✈️ Aéroport</a>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div><!-- fin panel-visites -->
+
+
+<!-- ════════════════════════════════════════
+     PANEL 2 — RESTOS
+════════════════════════════════════════ -->
+<div id="panel-restos" class="main-panel">
+  <div class="restos-content">
+
+    <div class="section-h">☕ Petits-déjeuners & Brunchs</div>
+    <div class="restos-grid">
+      <div class="resto-card star">
+        <div class="resto-name">Breakfast Lovers Alfama <span class="price">~15-20€/pers</span></div>
+        <div class="resto-type">🥚 Brunch cave voûtée · Alfama</div>
+        <div class="resto-desc"><strong>4,9⭐ · Meilleur brunch de Lisbonne</strong> selon beaucoup. Cave voûtée blanche avec des assiettes murales en déco rose poudré. Eggs Benedict poulet, pancakes caramel à tomber. <strong>Fermé mardi et mercredi.</strong> Ouvert 8h-13h (lun) / 8h-16h (jeu-dim). Entrée un peu cachée — chercher le panneau.</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Dear Breakfast — Chiado <span class="price">~16€/pers</span></div>
+        <div class="resto-type">☕ Brunch terrasse · Chiado</div>
+        <div class="resto-desc">Balcon avec vue directe sur les trams du Chiado — photogénique ! Pancakes caramel-banane-beurre de cacahuète délicieux. Arriver tôt (8h recommandé). Ouvert <strong>8h-16h tous les jours.</strong></div>
+      </div>
+      <div class="resto-card star">
+        <div class="resto-name">Augusto Lisboa <span class="price">~20€/pers</span></div>
+        <div class="resto-type">🌸 Brunch instagrammable · Alfama</div>
+        <div class="resto-desc"><strong>4,8⭐</strong> Sol rose, petites tasses mignonnes, charcuterie board délicieux + scrambled eggs sur toast au beurre. Portion massive pour le prix. Ouvert <strong>9h-16h</strong> (8h30 week-end).</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Mil Sabores <span class="price">~15€/pers</span></div>
+        <div class="resto-type">🌟 Meilleur rapport qualité/prix · Baixa</div>
+        <div class="resto-desc"><strong>4,7⭐</strong> Portions généreuses, cuisine fraîche. Réserver le week-end ou arriver avant 10h30. Ouvert dès <strong>7h tous les jours</strong> — idéal avant Sintra ou Belém.</div>
+      </div>
+    </div>
+
+    <div class="section-h">🍽️ Déjeuners & Dîners</div>
+    <div class="restos-grid">
+      <div class="resto-card">
+        <div class="resto-name">Time Out Market <span class="price">Libre</span></div>
+        <div class="resto-type">🏛️ Food Court · Cais do Sodré</div>
+        <div class="resto-desc">25+ stands de chefs reconnus sous un même toit. Gratuit d'entrée. Idéal pour le dîner d'arrivée ou quand le groupe n'est pas d'accord ! Ouvert 10h-minuit tous les jours.</div>
+      </div>
+      <div class="resto-card star">
+        <div class="resto-name">Lisbon Tu e Eu <span class="price">~15-20€/pers</span></div>
+        <div class="resto-type">🐟 Portugais traditionnel · Alfama</div>
+        <div class="resto-desc">Minuscule et <strong>très</strong> populaire. <strong>Arriver 30 min avant l'ouverture (12h)</strong> pour une table. Bacalhau com natas (morue à la crème) et tarte au citron divins. Ouvert 7j/7 12h-22h.</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">O Português Chiado <span class="price">~25-35€/pers</span></div>
+        <div class="resto-type">🐙 Portugais €€ · Chiado</div>
+        <div class="resto-desc"><strong>4,6⭐</strong> Bâtiment historique splendide (hauts plafonds, déco sobre et élégante). Pieuvre, crevettes à l'ail, steak. Possible sans réservation en arrivant tôt le midi. Ouvert 12h-minuit (mer. dès 13h).</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Bonjardim <span class="price">~28€/2 pers</span></div>
+        <div class="resto-type">🍗 Poulet rôti légendaire · Baixa</div>
+        <div class="resto-desc">LE spot historique du poulet rôti à la broche depuis des décennies. Service brusque, nourriture délicieuse. Midi = service rapide en 30 min. Ouvert 12h-23h, 7j/7.</div>
+      </div>
+      <div class="resto-card star">
+        <div class="resto-name">Ponto Final ⭐ <span class="price">~35-45€/pers</span></div>
+        <div class="resto-type">🌅 Vue coucher de soleil · Almada/Cacilhas</div>
+        <div class="resto-desc"><strong>4,3⭐ · Vue MAGIQUE</strong> sur Lisbonne et le pont depuis la rive sud. Ferry depuis Cais do Sodré (~2,50€). <strong>Réserver ABSOLUMENT. Fermé le mardi.</strong> Huîtres, poulpe, poissons grillés excellents. +351 936 869 031.</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Augusto <span class="price">~20€/pers</span></div>
+        <div class="resto-type">🌸 Déjeuner · Alfama</div>
+        <div class="resto-desc">Également excellent en déjeuner — idem brunch mais formule déjeuner disponible. Cadre photogénique, cuisine fraîche et généreuse.</div>
+      </div>
+    </div>
+
+    <div class="section-h">🥐 Pastéis de Nata — Le guide complet</div>
+    <div class="restos-grid">
+      <div class="resto-card star">
+        <div class="resto-name">Pastéis de Belém ⭐ <span class="price">~1,50€</span></div>
+        <div class="resto-type">🏆 L'originale depuis 1837 · Belém</div>
+        <div class="resto-desc">Recette secrète jamais partagée, connue de seulement 3 pâtissiers. <strong>Déguster TIÈDES</strong> avec cannelle + sucre glace. File tourne vite. Grand restaurant intérieur méconnu. Ouvert 8h-21h.</div>
+      </div>
+      <div class="resto-card star">
+        <div class="resto-name">Nat'elier <span class="price">~1,50€</span></div>
+        <div class="resto-type">🌟 Les meilleurs selon beaucoup · Baixa</div>
+        <div class="resto-desc"><strong>4,9⭐</strong> Grande variété de saveurs, à emporter. Classe de pâtisserie disponible (~45€/pers). Ouvert 9h-22h tous les jours. Idéal pour rapporter en souvenir.</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Pastelaria Santo António <span class="price">~1,20€</span></div>
+        <div class="resto-type">🏘️ Authentique · Alfama</div>
+        <div class="resto-desc">Alternative locale pour goûter des natas dans Alfama sans aller jusqu'à Belém. Ambiance de quartier, prix doux, qualité solide.</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Fábrica de Nata <span class="price">~1,50€</span></div>
+        <div class="resto-type">🏬 Moderne · Chiado</div>
+        <div class="resto-desc">Très recommandé sur les réseaux. Belle déco moderne, pasteis excellents. Plusieurs adresses dans Lisbonne — pratique quelle que soit votre position dans la ville.</div>
+      </div>
+    </div>
+
+    <div class="section-h">🥂 Rooftops & Apéros</div>
+    <div class="restos-grid">
+      <div class="resto-card star">
+        <div class="resto-name">Carmo Rooftop ⭐ <span class="price">Gratuit d'accès</span></div>
+        <div class="resto-type">🏛️ Secret des initiés · Chiado</div>
+        <div class="resto-desc"><strong>Meilleure astuce de Lisbonne.</strong> Même vue que l'Ascenseur Santa Justa, sans les 6€ ni la queue. Tu paies juste tes consommations. Ouvert 10h-0h30 (1h30 ven/sam).</div>
+      </div>
+      <div class="resto-card">
+        <div class="resto-name">Javá <span class="price">€€</span></div>
+        <div class="resto-type">🌇 Rooftop branché · Cais do Sodré</div>
+        <div class="resto-desc"><strong>4,4⭐</strong> Vue sur le Tage depuis la terrasse, idéal pour l'apéro au coucher de soleil. Réserver ou arriver tôt en haute saison. Ouvert 12h-1h du matin tous les jours.</div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<!-- ════════════════════════════════════════
+     PANEL 3 — ORGA J-1
+════════════════════════════════════════ -->
+<div id="panel-orga" class="main-panel">
+  <div class="orga-content">
+
+    <div class="orga-intro">
+      <h2>📋 Orga J-1 — Checklist interactive</h2>
+      <p>Tout ce qu'il faut préparer <strong>la veille</strong> de chaque journée. Cochez au fur et à mesure — vos cases restent cochées tant que la page est ouverte.</p>
+    </div>
+
+    <!-- ── AVANT LE DÉPART (ASAP) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('asap')">
+        <div class="orga-badge" style="background:var(--terracotta)">!</div>
+        <div class="orga-day-title">
+          <h3>À FAIRE MAINTENANT — Réservations urgentes</h3>
+          <p>Avant même de partir de la maison</p>
+        </div>
+        <div class="orga-chevron open" id="chevron-asap">▼</div>
+      </div>
+      <div class="orga-body" id="body-asap">
+        <div class="orga-section">
+          <div class="urgent-banner">⚠️ Ces réservations peuvent être complètes plusieurs semaines à l'avance — vérifier dès que possible !</div>
+          <div class="orga-section-title red">🔴 Réservations indispensables</div>
+          <div class="orga-items" id="checks-asap">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏛️ Mosteiro dos Jerónimos (samedi 9h30)</strong>
+                <span>Réserver sur <a class="orga-link" href="https://www.museusemonumentos.pt" target="_blank" onclick="event.stopPropagation()">museusemonumentos.pt</a> — ~18€/pers · Ouvert mar-dim 9h30-17h30 · <strong>Fermé le lundi</strong> · Sans billet = 1h+ de queue possible</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏰 Quinta da Regaleira — Créneau 14H00 (vendredi) ✅ déjà réservé</strong>
+                <span>Confirmer sur <a class="orga-link" href="https://www.regaleira.pt" target="_blank" onclick="event.stopPropagation()">regaleira.pt</a> · ~15€/pers · Arriver à 13h50 · 10% de réduction avec Lisboa Card</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>👑 Palais de Pena — Créneau 16H00 (vendredi) ✅ déjà réservé</strong>
+                <span>Confirmer sur <a class="orga-link" href="https://www.parquesdesintra.pt" target="_blank" onclick="event.stopPropagation()">parquesdesintra.pt</a> · ~20€/pers · Arriver aux portes du parc à 15h45 · 10% de réduction avec Lisboa Card</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🃏 Lisboa Card 48h — à acheter avant le départ (4 cartes)</strong>
+                <span>~51€/pers · Activer <strong>vendredi matin</strong> dès le 1er trajet · Couvre vendredi + samedi entier · Inclus : trains Rossio→Sintra AR, tous transports, Castelo São Jorge (~60€ économisés pour 4) · Acheter sur <a class="orga-link" href="https://www.askmelisboa.com" target="_blank" onclick="event.stopPropagation()">askmelisboa.com</a> ou retirer à l'aéroport dès l'arrivée</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🍽️ Ponto Final — Réserver pour le vendredi soir (retour de Sintra ~20h)</strong>
+                <span>Appeler le <a class="orga-link" href="tel:+351936869031" onclick="event.stopPropagation()">+351 936 869 031</a> · <strong>FERMÉ LE MARDI</strong> · Ouvert 12h30-16h et 19h-23h · Vue magique sur Lisbonne depuis Cacilhas · Réserver tôt — très demandé</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>📱 Installer Bolt + Uber</strong>
+                <span>Télécharger <a class="orga-link" href="https://bolt.eu" target="_blank" onclick="event.stopPropagation()">Bolt</a> et <a class="orga-link" href="https://uber.com" target="_blank" onclick="event.stopPropagation()">Uber</a> avant le départ · Indispensable pour Sintra (routes raides entre les palais) et Cristo Rei · Bolt souvent moins cher</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>💳 Carte Viva Viagem — charger dès l'arrivée</strong>
+                <span>S'achète à l'aéroport ou en station de métro · ~1,65€/trajet (métro/tram) · ~2,50€ AR (trains Cascais et Sintra) · Charger au moins 30€ pour 4 personnes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── MERCREDI (veille pour jeudi) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('mercredi')">
+        <div class="orga-badge">Me</div>
+        <div class="orga-day-title">
+          <h3>Mercredi soir — Pour le jeudi (Cascais)</h3>
+          <p>Pas grand chose à préparer !</p>
+        </div>
+        <div class="orga-chevron" id="chevron-mercredi">▼</div>
+      </div>
+      <div class="orga-body" id="body-mercredi" style="display:none">
+        <div class="orga-section">
+          <div class="orga-section-title green">🟢 Rien à réserver !</div>
+          <div class="orga-items" id="checks-mercredi">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚉 Train Cais do Sodré → Cascais</strong>
+                <span>Toutes les 30 min · ~2,50€ AR avec carte Viva Viagem · ~40 min de trajet · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Gare+Cais+do+Sodre+Lisboa" target="_blank">📍 Cais do Sodré</a></span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🧥 Veste légère pour Boca do Inferno</strong>
+                <span>Il peut faire frais en bord de mer en avril même par beau temps</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>👟 Chaussures confortables pour la marche Cascais → Boca</strong>
+                <span>15 min à pied depuis la gare le long du bord de mer</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🍽️ Dîner d'arrivée = Time Out Market</strong>
+                <span>Ouvert jusqu'à minuit · Pas de réservation nécessaire · Chacun choisit son stand — parfait pour goûter à plein d'adresses différentes</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── JEUDI (veille pour vendredi Sintra) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('jeudi')">
+        <div class="orga-badge">J</div>
+        <div class="orga-day-title">
+          <h3>Jeudi soir — Pour le vendredi (Sintra)</h3>
+          <p>Billets 14h + 16h confirmés · Lisboa Card à prévoir</p>
+        </div>
+        <div class="orga-chevron" id="chevron-jeudi">▼</div>
+      </div>
+      <div class="orga-body" id="body-jeudi" style="display:none">
+        <div class="orga-section">
+          <div class="orga-section-title red">🔴 Vérifications</div>
+          <div class="orga-items" id="checks-jeudi">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏰 Quinta da Regaleira — Créneau 14h confirmé ? → <a class="orga-link" href="https://www.regaleira.pt" target="_blank" onclick="event.stopPropagation()">regaleira.pt</a></strong>
+                <span>Arriver à <strong>13h50</strong> à l'entrée · Chaussures imperméables recommandées · ~15€/pers · 10% de réduction Lisboa Card</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>👑 Palais de Pena — Créneau 16h confirmé ? → <a class="orga-link" href="https://www.parquesdesintra.pt" target="_blank" onclick="event.stopPropagation()">parquesdesintra.pt</a></strong>
+                <span>Arriver aux <strong>portes du parc à 15h45</strong> · ~20€/pers · 10% de réduction Lisboa Card · Uber depuis la Quinta (~5 min, ~4€)</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🃏 Lisboa Card 48h — à acheter et retirer vendredi matin</strong>
+                <span>~51€/pers · Activer vendredi matin au départ (couvre vendredi + samedi entier) · Retrait à l'aéroport, Praça do Comércio ou Cais do Sodré · Inclut train Rossio→Sintra AR et tous transports · <a class="orga-link" href="https://www.askmelisboa.com" target="_blank" onclick="event.stopPropagation()">askmelisboa.com</a></span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🍽️ Ponto Final — réservé pour ce vendredi soir au retour de Sintra ?</strong>
+                <span>Appeler le <a class="orga-link" href="tel:+351936869031" onclick="event.stopPropagation()">+351 936 869 031</a> · Retour Sintra ~20h · Vue magique sur Lisbonne depuis Cacilhas · <strong>Fermé le mardi</strong></span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orga-section">
+          <div class="orga-section-title blue">🔵 Logistique transport vendredi (Sintra)</div>
+          <div class="orga-items">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚉 Train Rossio → Sintra (départ ~9h00) · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Gare+Rossio+Lisboa" target="_blank">📍 Gare do Rossio</a></strong>
+                <span>Toutes les 30-40 min · ~40 min de trajet · Inclus dans la Lisboa Card · Arrivée Sintra ~9h40</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚗 Uber/Bolt entre les sites à Sintra</strong>
+                <span>Les routes sont très raides — ne pas marcher entre les palais · Quinta → Pena (~5 min, ~4€) · Ne pas marcher !</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>👟 Chaussures de marche + veste légère</strong>
+                <span>La Quinta est humide et glissante · Sintra peut être brumeux/frais même en avril</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── VENDREDI (veille pour samedi Belém) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('vendredi')">
+        <div class="orga-badge">V</div>
+        <div class="orga-day-title">
+          <h3>Vendredi soir — Pour le samedi (Belém + Cristo Rei) 🃏</h3>
+          <p>Lisboa Card active · Vérifier Jerónimos · Planifier ferry</p>
+        </div>
+        <div class="orga-chevron" id="chevron-vendredi">▼</div>
+      </div>
+      <div class="orga-body" id="body-vendredi" style="display:none">
+        <div class="orga-section">
+          <div class="orga-section-title red">🔴 Vérifications</div>
+          <div class="orga-items" id="checks-vendredi">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>✅ Confirmation réservation Jerónimos reçue ? (samedi 9h30)</strong>
+                <span>Vérifier l'email · Billet sur téléphone suffisant · Ouvert mar-dim 9h30-17h30 · Si pas encore fait : <a class="orga-link" href="https://www.museusemonumentos.pt" target="_blank" onclick="event.stopPropagation()">museusemonumentos.pt</a></span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🃏 Lisboa Card toujours active ? (couvre toute la journée de samedi)</strong>
+                <span>Activée vendredi matin → valable 48h → couvre samedi entier · Castelo São Jorge dimanche = gratuit (15€/pers) · Tous transports inclus</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orga-section">
+          <div class="orga-section-title blue">🔵 Logistique transport samedi (Belém)</div>
+          <div class="orga-items">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚊 9h00 — Tram 15E → Belém OU Train Cais do Sodré</strong>
+                <span>~30 min · Le train est plus rapide et moins bondé · Inclus dans la Lisboa Card</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>⛴️ Pour Cristo Rei — Ferry depuis Cais do Sodré (pas Belém !)</strong>
+                <span>Ferry <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Terminal+Fluvial+Cais+do+Sodre+Lisboa" target="_blank">Cais do Sodré</a> → Cacilhas (~8 min, ~1,55€) · Bus 3001 → Cristo Rei (~20 min, ~1,50€) · <strong>OU</strong> Bolt depuis Belém (~12€, plus simple pour les parents) · <strong>76 marches</strong> après l'ascenseur !</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🧥 Veste pour Cristo Rei</strong>
+                <span>Très venté en hauteur, même par beau temps · 103m du sol</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <!-- ── SAMEDI (veille pour dimanche) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('samedi')">
+        <div class="orga-badge" style="background:var(--gold)">Sa</div>
+        <div class="orga-day-title">
+          <h3>Samedi soir — Pour le dimanche de Pâques 🐣</h3>
+          <p>Messe 11h15 · Matinée en ville · Alfama</p>
+        </div>
+        <div class="orga-chevron" id="chevron-samedi">▼</div>
+      </div>
+      <div class="orga-body" id="body-samedi" style="display:none">
+        <div class="orga-section">
+          <div class="urgent-banner">⚠️ Dimanche de Pâques = jour férié au Portugal. Certains monuments peuvent avoir des horaires réduits. Panteão et Convento do Carmo fermés le dimanche.</div>
+          <div class="orga-section-title red">🔴 Points d'attention</div>
+          <div class="orga-items" id="checks-samedi">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>⛪ Messe Saint-Louis des Français — 11h15 · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Eglise+Saint+Louis+des+Francais+Lisboa+Portugal" target="_blank">📍 Maps</a> · <a class="orga-link" href="https://www.saintlouis.pt" target="_blank" onclick="event.stopPropagation()">saintlouis.pt</a></strong>
+                <span>Beco de São Luís da Pena 34 · Arriver à <strong>11h00</strong> · Accès libre et gratuit · Places limitées le dimanche de Pâques</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏰 Panteão National — FERMÉ le dimanche</strong>
+                <span>Ne pas le prévoir ce jour-là — à programmer un autre jour de la semaine</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏛️ Convento do Carmo — FERMÉ le dimanche</strong>
+                <span>Le Carmo Rooftop juste à côté reste ouvert (gratuit d'accès) · Ouvert dès 10h</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orga-section">
+          <div class="orga-section-title blue">🔵 Programme du matin (avant 11h15)</div>
+          <div class="orga-items">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>☕ 8h30 — Petit-déjeuner de Pâques</strong>
+                <span><a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Dear+Breakfast+Chiado+Lisboa" target="_blank">📍 Dear Breakfast</a> (ouvert dès 8h, balcon vue trams) ou <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Mil+Sabores+Brunch+Lisboa" target="_blank">📍 Mil Sabores</a> (ouvert dès 7h) · Prévoir ~1h sur place avant de partir explorer</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>⛪ 9h30 — Cathédrale Sé & ambiance de Pâques · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Catedral+Se+Lisboa+Portugal" target="_blank">📍 Maps</a></strong>
+                <span>Les cloches sonnent à nouveau après le silence de la Semaine Sainte — ambiance unique dans les rues d'Alfama</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚶 10h15 — Balade Alfama + Elevador da Bica · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Elevador+da+Bica+Lisboa" target="_blank">📍 Maps</a></strong>
+                <span>Photo de l'Elevador depuis le bas de la rue · Rejoindre l'église Saint-Louis à 11h00</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="orga-section">
+          <div class="orga-section-title gold">💛 Tenue & traditions</div>
+          <div class="orga-items">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>👗 Tenue correcte pour la messe</strong>
+                <span>Épaules couvertes, pas de short · C'est une vraie messe de Pâques, atmosphère recueillie et festive à la fois</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🥚 Chercher le folar de Pâques en boulangerie</strong>
+                <span>Tradition portugaise — pain sucré fourré aux oeufs offert par les parrains à leurs filleuls. Spécialité pascale uniquement disponible à cette période.</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── DIMANCHE (veille pour lundi) ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('dimanche')">
+        <div class="orga-badge" style="background:var(--sage)">Di</div>
+        <div class="orga-day-title">
+          <h3>Dimanche soir — Pour le lundi (LX Factory + départ)</h3>
+          <p>Dernière nuit · Penser aux bagages</p>
+        </div>
+        <div class="orga-chevron" id="chevron-dimanche">▼</div>
+      </div>
+      <div class="orga-body" id="body-dimanche" style="display:none">
+        <div class="orga-section">
+          <div class="orga-section-title blue">🔵 Dernière matinée</div>
+          <div class="orga-items" id="checks-dimanche">
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🏭 LX Factory — ouvert dès 10h30 le lundi · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=LX+Factory+Alcantara+Lisboa" target="_blank">📍 Maps</a></strong>
+                <span>Boutiques créatives, librairie Ler Devagar, street art, ambiance industrielle · Pas de réservation nécessaire · Rua Rodrigues de Faria 103</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🥐 Nat'elier — dernières natas à emporter · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Natelier+Pastel+Nata+Lisboa" target="_blank">📍 Maps</a></strong>
+                <span>Ouvert dès 9h · Boîtes de 6 ou 12 pour ramener en souvenir · Se gardent bien quelques heures · Rua de Santa Justa 87</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🧳 Préparer les bagages ce soir</strong>
+                <span>Azulejos (bien emballer !), folar, natas, souvenirs... Ne pas oublier les cartes de transport et les reçus de réservation</span>
+              </div>
+            </div>
+            <div class="check-item" onclick="toggleCheck(this, event)">
+              <input type="checkbox"><div class="check-box"></div>
+              <div class="check-text">
+                <strong>🚇 Transport aéroport — Métro Ligne Rouge · <a class="orga-link" href="https://maps.google.com/maps/search/?api=1&query=Aeroporto+Humberto+Delgado+Lisboa" target="_blank">📍 Aéroport Maps</a></strong>
+                <span>Direction "Aeroporto" · Ligne directe depuis le centre · ~45 min depuis la Baixa · Ou Uber si beaucoup de bagages · Vérifier l'heure de votre vol !</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- ── TIPS GÉNÉRAUX ── -->
+    <div class="orga-day">
+      <div class="orga-day-header" onclick="toggleOrga('tips')" style="background:var(--terracotta); border-radius:12px;">
+        <div class="orga-badge" style="background:white;color:var(--terracotta)">💡</div>
+        <div class="orga-day-title">
+          <h3>Tips généraux — valables tout le séjour</h3>
+          <p>À garder en tête tout au long du voyage</p>
+        </div>
+        <div class="orga-chevron" id="chevron-tips">▼</div>
+      </div>
+      <div class="orga-body" id="body-tips" style="display:none">
+        <div class="orga-section">
+          <div class="tips-chips">
+            <span class="chip">💳 Carte Viva Viagem pour tous les transports</span>
+            <span class="chip">🚌 Tram 28 = trop de queue → Tram 25 ou 12</span>
+            <span class="chip">🎢 Santa Justa → Passer par le Carmo Rooftop (gratuit !)</span>
+            <span class="chip">❌ Elevador da Glória = À ÉVITER (accident sept. 2025)</span>
+            <span class="chip">🌙 Pink Street = le soir uniquement</span>
+            <span class="chip">📱 Bolt souvent moins cher qu'Uber à Lisbonne</span>
+            <span class="chip">🐟 Plat incontournable = Bacalhau (morue) sous toutes ses formes</span>
+            <span class="chip">💧 Eau du robinet potable à Lisbonne</span>
+            <span class="chip">☀️ Avril = 15-20°C, quelques averses possibles</span>
+            <span class="chip">🕐 Les Portugais dînent tard (20h30-21h+)</span>
+            <span class="chip">🛵 Les rues d'Alfama sont très étroites — pas de voiture, tout à pied</span>
+            <span class="chip">🌉 Le pont 25 Abril ressemble au Golden Gate — même ingénieur !</span>
+            <span class="chip">🐱 Les chats font partie du paysage d'Alfama</span>
+            <span class="chip">🎵 Le Fado est la musique de l'âme portugaise — l'entendre en live dans un bar d'Alfama</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+  </div>
+</div>
+
+
+<script>
+// ── GOOGLE MAPS — ouvre dans un nouvel onglet, bypass le problème des & dans href HTML ──
+function openMap(query) {
+  window.open('https://www.google.com/maps/search/?api=1&query=' + query, '_blank');
+}
+
+// ── MAIN TABS ──
+function showMain(panelId, btn) {
+  document.querySelectorAll('.main-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.main-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('panel-' + panelId).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── DAY SUB-TABS ──
+function showDay(dayId, btn) {
+  document.querySelectorAll('.day-panel').forEach(p => p.classList.remove('active'));
+  document.querySelectorAll('.day-tab').forEach(t => t.classList.remove('active'));
+  document.getElementById('day-' + dayId).classList.add('active');
+  btn.classList.add('active');
+}
+
+// ── ORGA COLLAPSE ──
+function toggleOrga(id) {
+  const body = document.getElementById('body-' + id);
+  const chevron = document.getElementById('chevron-' + id);
+  if (!body) return;
+  const isOpen = body.style.display !== 'none';
+  body.style.display = isOpen ? 'none' : 'block';
+  if (chevron) chevron.classList.toggle('open', !isOpen);
+}
+
+// ── CHECKBOXES — ne pas déclencher si on clique sur un lien ──
+function toggleCheck(item, event) {
+  if (event && event.target.tagName === 'A') return;
+  item.classList.toggle('checked');
+  const cb = item.querySelector('input[type="checkbox"]');
+  if (cb) cb.checked = !cb.checked;
+}
+
+// ── RENDRE LES LIENS ORGA CLIQUABLES sans cocher la case ──
+document.addEventListener('DOMContentLoaded', function() {
+  // Ouvrir le premier bloc orga par défaut
+  toggleOrga('asap');
+
+  // Empêcher les clics sur les liens dans les check-items de cocher la case
+  document.querySelectorAll('.check-item a').forEach(function(link) {
+    link.addEventListener('click', function(e) {
+      e.stopPropagation();
+    });
+  });
+});
+
+// ── OPEN URL — pour les liens dans Orga ──
+function openUrl(url) {
+  window.open(url, '_blank');
+}
+</script>
+</body>
+</html>
