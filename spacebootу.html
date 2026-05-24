@@ -3,7 +3,7 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=no">
-<title>Space Booty — Bas du Corps</title>
+<title>Space Booty — Workout Salle</title>
 <style>
 @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;0,600;1,400&display=swap');
 *{margin:0;padding:0;box-sizing:border-box;-webkit-tap-highlight-color:transparent;}
@@ -90,8 +90,8 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .sp-phases{display:flex;gap:6px;margin-bottom:10px;}
 .sp-phase-btn{flex:1;padding:9px;background:var(--card);border:1px solid var(--border);color:var(--gray);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:2px;cursor:pointer;border-radius:var(--radius-sm);text-align:center;transition:all 0.2s;}
 .sp-phase-btn.active{background:var(--green);color:var(--black);border-color:var(--green);}
-.sp-blocks{display:flex;gap:6px;}
-.sp-block-btn{flex:1;padding:10px;background:var(--card);border:1px solid var(--border);color:var(--gray);font-family:'Bebas Neue',sans-serif;font-size:0.9rem;letter-spacing:2px;cursor:pointer;border-radius:var(--radius-sm);text-align:center;transition:all 0.2s;}
+.sp-blocks{display:grid;grid-template-columns:1fr 1fr;gap:6px;}
+.sp-block-btn{padding:11px 6px;background:var(--card);border:1px solid var(--border);color:var(--gray);font-family:'Bebas Neue',sans-serif;font-size:0.92rem;letter-spacing:1.5px;cursor:pointer;border-radius:var(--radius-sm);text-align:center;transition:all 0.2s;}
 .sp-block-btn.active{background:var(--green-bg);color:var(--green);border-color:var(--green-d);}
 
 .start-session-btn{width:100%;padding:16px;background:var(--green);color:var(--black);border:none;border-radius:var(--radius);font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;cursor:pointer;margin-bottom:24px;transition:all 0.2s;}
@@ -299,7 +299,7 @@ canvas.st-chart{width:100%;height:110px;}
   <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;">
     <div>
       <h1 class="bebas">SPACE <em>BOOTY</em></h1>
-      <p>Bas du Corps · 3 Phases · 12 Semaines</p>
+      <p>3 Phases · 4 Séances · 12 Semaines</p>
     </div>
     <button onclick="resetAll()" style="background:transparent;border:1px solid var(--border2);color:var(--gray);padding:6px 10px;border-radius:var(--radius-sm);font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:all 0.2s;"
       onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'"
@@ -320,7 +320,7 @@ canvas.st-chart{width:100%;height:110px;}
   <div class="label" style="margin-bottom:10px">Phases</div>
   <div class="phase-strip" id="phaseStrip"></div>
 
-  <div class="label" style="margin-bottom:10px">Prochaine séance</div>
+  <div class="label" style="margin-bottom:10px">Programme de la phase</div>
   <div class="session-grid" id="nextSessionGrid"></div>
 
   <div class="label" style="margin-bottom:10px">Derniers PRs</div>
@@ -344,8 +344,10 @@ canvas.st-chart{width:100%;height:110px;}
     </div>
     <div class="sp-title" style="margin-top:12px">SÉANCE</div>
     <div class="sp-blocks" id="spBlocks">
-      <button class="sp-block-btn active" onclick="setPickBlock('bdc01')">BAS DU CORPS 01</button>
-      <button class="sp-block-btn" onclick="setPickBlock('bdc02')">BAS DU CORPS 02</button>
+      <button class="sp-block-btn active" onclick="setPickBlock('bdc01')">BAS 01</button>
+      <button class="sp-block-btn" onclick="setPickBlock('hdc01')">HAUT 01 · PUSH</button>
+      <button class="sp-block-btn" onclick="setPickBlock('bdc02')">BAS 02</button>
+      <button class="sp-block-btn" onclick="setPickBlock('hdc02')">HAUT 02 · PULL</button>
     </div>
   </div>
 
@@ -410,6 +412,21 @@ const EX = {
       {name:'STEP UP',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
       {name:'KICKBACK 45°',s:3,reps:'15',tempo:'3-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Machine kickback'},
     ]},
+    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
+      {name:'DB BENCH',s:4,reps:'10-12',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
+      {name:'SHOULDER PRESS',s:4,reps:'10-12',tempo:'3-0-1-1',repos:'2:00',reposSec:120,note:'',alt:'Machine'},
+      {name:'LATERAL RAISE',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'À la poulie'},
+      {name:'TRICEPS EXTENSION',s:4,reps:'15',tempo:'2-0-1-2',repos:'2:00',reposSec:120,note:'',alt:'À la poulie · Debout'},
+      {name:'PUSH UP ASSISTED',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'1:00',reposSec:60,note:'',alt:''},
+    ]},
+    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
+      {name:'ASSISTED PULL UP',s:4,reps:'10-12',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:'Machine'},
+      {name:'LAT PULLDOWN SUPINATION',s:3,reps:'12-15',tempo:'3-0-1-2',repos:'2:00',reposSec:120,note:'',alt:''},
+      {name:'CABLE ROW NEUTRE',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:'DB row'},
+      {name:'CABLE PULLOVER',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:''},
+      {name:'CABLE FACEPULL',s:3,reps:'15-20',tempo:'3-0-1-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
+      {name:'DB BICEPS CURL',s:3,reps:'15-20',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Haltères · Barre guidée'},
+    ]},
   },
   2:{
     bdc01:{label:'BAS DU CORPS 01',list:[
@@ -426,6 +443,21 @@ const EX = {
       {name:'LEGPRESS UNILATERAL',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
       {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
       {name:'KICKBACK 45°',s:3,reps:'15',tempo:'4-0-2-0',repos:'1:00/2:00',reposSec:90,note:'',alt:''},
+    ]},
+    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
+      {name:'DB BENCH',s:4,reps:'8-10',tempo:'2-1-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Barre guidée'},
+      {name:'DB SHOULDER PRESS',s:4,reps:'8-10',tempo:'2-1-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
+      {name:'CHEST FLY',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
+      {name:'TRICEPS EXTENSION',s:3,reps:'10-12',tempo:'2-0-1-2',repos:'1:00',reposSec:60,note:'',alt:'À la poulie · Debout'},
+      {name:'DIPS ASSISTED',s:3,reps:'MAX',tempo:'X-X-X-X',repos:'1:00',reposSec:60,note:'',alt:''},
+    ]},
+    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
+      {name:'PULL UP ASSISTED',s:4,reps:'8-10',tempo:'3-0-1-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
+      {name:'LAT PULLDOWN PRONATION',s:3,reps:'8-10',tempo:'3-0-1-2',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
+      {name:'DB ROW',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:'Avec câble'},
+      {name:'SINGLE ARM HIGH CABLE ROW',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
+      {name:'CABLE FACEPULL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
+      {name:'CABLE BICEPS CURL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Haltères'},
     ]},
   },
   3:{
@@ -444,8 +476,27 @@ const EX = {
       {name:'LEGPRESS',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
       {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'1:00/2:00',reposSec:90,note:'',alt:''},
     ]},
+    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
+      {name:'BB BENCH',s:4,reps:'8-10',tempo:'2-0-2-0',repos:'3:00',reposSec:180,note:'',alt:'Avec haltères'},
+      {name:'BB OVERHEAD PRESS',s:4,reps:'8-10',tempo:'2-0-2-0',repos:'3:00',reposSec:180,note:'',alt:'Shoulder press'},
+      {name:'LATERAL RAISE',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'—',reposSec:0,note:'BISET avec Front Raise · Pas besoin de charger lourd',alt:'À la poulie',biset:true},
+      {name:'FRONT RAISE',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'2:00',reposSec:120,note:'BISET avec Lateral Raise',alt:'',biset:true},
+      {name:'TRICEPS EXTENSION HALTÈRES',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00/1:30',reposSec:75,note:'',alt:'À la poulie'},
+    ]},
+    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
+      {name:'ASSISTED PULL UP',s:5,reps:'6-8',tempo:'3-0-1-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Sans élastique'},
+      {name:'LAT PULLDOWN PRONATION',s:3,reps:'8-10',tempo:'3-0-1-2',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
+      {name:'CABLE ROW NEUTRE',s:3,reps:'8-10',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
+      {name:'SINGLE ARM HIGH CABLE ROW',s:3,reps:'8-10',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
+      {name:'CABLE FACEPULL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
+      {name:'BB BICEPS CURL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec haltères'},
+    ]},
   },
 };
+
+// Ordre canonique des séances (bas/haut · push/pull)
+const BLOCKS = ['bdc01','hdc01','bdc02','hdc02'];
+const BLOCKS_PER_PHASE = BLOCKS.length;
 
 // Total sessions per phase/block = 4 weeks
 const TOTAL_SESSIONS_PER = 4;
@@ -550,7 +601,7 @@ function switchPage(page){
 // ─────────────────────────────────────────────
 function renderHome(){
   // Progress
-  const totalPossible = 3 * 2 * 4; // 3 phases × 2 blocks × 4 sessions
+  const totalPossible = 3 * BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 3 phases × 4 séances × 4 semaines
   const done = getTotalDone();
   const pct = Math.round((done/totalPossible)*100);
   document.getElementById('heroTitle').textContent = pct + '%';
@@ -560,30 +611,27 @@ function renderHome(){
   // Phase strip
   const strip = document.getElementById('phaseStrip');
   strip.innerHTML = '';
+  const perPhase = BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 16
   [1,2,3].forEach(p=>{
-    const done01 = getSessionCount(p,'bdc01');
-    const done02 = getSessionCount(p,'bdc02');
-    const total = done01 + done02;
-    const isComplete = total >= 8;
+    const total = BLOCKS.reduce((sum,bk)=>sum+getSessionCount(p,bk),0);
+    const isComplete = total >= perPhase;
     const isCurrent = !isComplete && (total > 0 || p===1);
     strip.innerHTML += `<div class="phase-card ${isComplete?'done':isCurrent?'current':''}" onclick="switchPage('session')">
       <div class="phase-card-num">P${p}</div>
-      <div class="phase-card-prog">${total}/8</div>
+      <div class="phase-card-prog">${total}/${perPhase}</div>
     </div>`;
   });
 
-  // Next sessions — show both blocks of current phase, smartly ordered
+  // Next sessions — show all blocks of current phase in program order
   const grid = document.getElementById('nextSessionGrid');
   grid.innerHTML = '';
   let currentPhase = 1;
   for(let p=1;p<=3;p++){
-    const t = getSessionCount(p,'bdc01') + getSessionCount(p,'bdc02');
-    if(t < 8){ currentPhase = p; break; }
+    const t = BLOCKS.reduce((sum,bk)=>sum+getSessionCount(p,bk),0);
+    if(t < perPhase){ currentPhase = p; break; }
     if(p===3) currentPhase = 3;
   }
-  // Sort blocks: show the one with fewer sessions first (= most urgent)
-  const blocks = ['bdc01','bdc02'].sort((a,b)=>getSessionCount(currentPhase,a)-getSessionCount(currentPhase,b));
-  blocks.forEach(bk=>{
+  BLOCKS.forEach(bk=>{
     const count = getSessionCount(currentPhase, bk);
     const last = getLastSession(currentPhase, bk);
     const isDone = count >= 4;
@@ -641,13 +689,13 @@ function setPickPhase(p){
 function setPickBlock(bk){
   pickBlock = bk;
   sessionOrder = EX[pickPhase][pickBlock].list.map((_,i)=>i);
-  document.querySelectorAll('.sp-block-btn').forEach((b,i)=>b.classList.toggle('active',['bdc01','bdc02'][i]===bk));
+  document.querySelectorAll('.sp-block-btn').forEach((b,i)=>b.classList.toggle('active',BLOCKS[i]===bk));
   renderExPreview();
 }
 
 function renderSessionPicker(){
   document.querySelectorAll('.sp-phase-btn').forEach((b,i)=>b.classList.toggle('active',[1,2,3][i]===pickPhase));
-  document.querySelectorAll('.sp-block-btn').forEach((b,i)=>b.classList.toggle('active',['bdc01','bdc02'][i]===pickBlock));
+  document.querySelectorAll('.sp-block-btn').forEach((b,i)=>b.classList.toggle('active',BLOCKS[i]===pickBlock));
   renderExPreview();
 }
 
@@ -946,7 +994,9 @@ function renderStats(){
     <button class="sf-btn ${statsPhase===2?'active':''}" onclick="setStatsPhase(2)">PHASE 2</button>
     <button class="sf-btn ${statsPhase===3?'active':''}" onclick="setStatsPhase(3)">PHASE 3</button>
     <button class="sf-btn ${statsBlock==='bdc01'?'active':''}" onclick="setStatsBlock('bdc01')">BAS 01</button>
-    <button class="sf-btn ${statsBlock==='bdc02'?'active':''}" onclick="setStatsBlock('bdc02')">BAS 02</button>`;
+    <button class="sf-btn ${statsBlock==='hdc01'?'active':''}" onclick="setStatsBlock('hdc01')">HAUT 01</button>
+    <button class="sf-btn ${statsBlock==='bdc02'?'active':''}" onclick="setStatsBlock('bdc02')">BAS 02</button>
+    <button class="sf-btn ${statsBlock==='hdc02'?'active':''}" onclick="setStatsBlock('hdc02')">HAUT 02</button>`;
 
   const phases = statsPhase === 0 ? [1,2,3] : [statsPhase];
   const bk = statsBlock;
