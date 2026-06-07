@@ -41,9 +41,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .page-header h1 em{color:var(--green);font-style:normal;}
 .page-header p{font-size:0.72rem;letter-spacing:2px;color:var(--gray);margin-top:4px;text-transform:uppercase;}
 
-/* ── CARDS ── */
-.card{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:16px;margin-bottom:12px;}
-.card2{background:var(--card2);border-radius:var(--radius-sm);padding:12px;}
 
 /* ── OVERVIEW PAGE ── */
 .overview-hero{background:var(--green-bg);border:1px solid var(--green-d);border-radius:var(--radius);padding:20px;margin-bottom:16px;position:relative;overflow:hidden;}
@@ -52,9 +49,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .hero-title{font-family:'Bebas Neue',sans-serif;font-size:1.8rem;letter-spacing:3px;color:var(--green);line-height:1.1;margin-bottom:4px;}
 .hero-sub{font-size:0.78rem;color:var(--gray2);}
 
-.global-progress{margin-bottom:4px;}
-.gp-row{display:flex;justify-content:space-between;align-items:center;margin-bottom:8px;}
-.gp-pct{font-family:'Bebas Neue',sans-serif;font-size:1.4rem;color:var(--green);}
 .prog-bar{height:6px;background:var(--border2);border-radius:3px;overflow:hidden;}
 .prog-fill{height:100%;background:linear-gradient(90deg,var(--green-d),var(--green));border-radius:3px;transition:width 0.5s ease;}
 
@@ -68,7 +62,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .phase-card-prog{font-size:0.65rem;letter-spacing:1px;color:var(--gray);margin-top:2px;}
 .phase-card.current .phase-card-prog{color:var(--green-d);}
 
-.session-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px;margin-bottom:16px;}
+.session-grid{display:grid;grid-template-columns:1fr;gap:8px;margin-bottom:16px;}
 .session-pick{background:var(--card);border:1px solid var(--border);border-radius:var(--radius);padding:14px;cursor:pointer;transition:all 0.2s;position:relative;overflow:hidden;}
 .session-pick:active{transform:scale(0.98);}
 .session-pick-phase{font-size:0.6rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:4px;}
@@ -107,10 +101,6 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .reorder-btn{background:var(--card2);border:1px solid var(--border2);color:var(--gray);width:26px;height:26px;border-radius:4px;cursor:pointer;font-size:0.75rem;display:flex;align-items:center;justify-content:center;transition:all 0.15s;}
 .reorder-btn:hover{border-color:var(--green);color:var(--green);}
 .reorder-btn:disabled{opacity:0.2;cursor:default;}
-.so-reorder-bar{display:flex;justify-content:flex-end;gap:6px;margin-bottom:12px;}
-.so-reorder-btn{background:var(--card2);border:1px solid var(--border2);color:var(--gray);padding:7px 12px;border-radius:var(--radius-sm);font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;cursor:pointer;transition:all 0.2s;}
-.so-reorder-btn:hover{border-color:var(--green);color:var(--green);}
-.so-reorder-btn:disabled{opacity:0.3;cursor:default;}
 
 /* ── SESSION ACTIVE OVERLAY ── */
 .session-overlay{position:fixed;inset:0;background:var(--black);z-index:100;display:flex;flex-direction:column;padding:0;overflow:hidden;}
@@ -157,17 +147,19 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .so-prev-chip span{color:var(--white);font-weight:600;}
 
 .so-charges-label{font-size:0.6rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:10px;}
-.so-series-grid{display:flex;gap:8px;flex-wrap:wrap;margin-bottom:14px;}
-.so-serie-wrap{display:flex;flex-direction:column;align-items:center;gap:4px;}
-.so-serie-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--gray);}
-.so-serie-input{width:64px;height:56px;background:var(--dark);border:2px solid var(--border);border-radius:var(--radius-sm);color:var(--white);font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:600;text-align:center;}
-.so-serie-input:focus{outline:none;border-color:var(--green);}
-.so-serie-input.is-pr{border-color:var(--gold);background:var(--gold-bg);color:var(--gold);}
-
-.so-ex-note-label{font-size:0.6rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:6px;}
+.so-ex-note-label{font-size:0.6rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:6px;margin-top:14px;}
 .so-ex-note{width:100%;background:var(--dark);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--white);font-family:'DM Sans',sans-serif;font-size:0.85rem;padding:10px 12px;resize:none;height:52px;transition:height 0.2s,border-color 0.2s;}
 .so-ex-note:focus{outline:none;border-color:var(--green);height:80px;}
 .so-ex-note::placeholder{color:#333;}
+.so-series-grid{display:flex;flex-direction:column;gap:8px;margin-bottom:14px;}
+.so-serie-wrap{display:flex;flex-direction:row;align-items:center;gap:10px;}
+.so-serie-lbl{font-size:0.6rem;letter-spacing:1px;color:var(--gray);width:46px;flex-shrink:0;}
+.so-serie-input{width:72px;height:44px;background:var(--dark);border:2px solid var(--border);border-radius:var(--radius-sm);color:var(--white);font-family:'DM Sans',sans-serif;font-size:1.1rem;font-weight:600;text-align:center;flex-shrink:0;}
+.so-serie-input:focus{outline:none;border-color:var(--green);}
+.so-serie-input.is-pr{border-color:var(--gold);background:var(--gold-bg);color:var(--gold);}
+.so-serie-note{flex:1;font-size:0.72rem;font-family:'DM Sans',sans-serif;background:var(--dark);border:1px solid var(--border);border-radius:var(--radius-sm);color:var(--gray);padding:6px 8px;resize:none;height:44px;line-height:1.35;box-sizing:border-box;}
+.so-serie-note:focus{outline:none;border-color:var(--green);color:var(--white);}
+
 
 .so-footer{padding:12px 16px 20px;border-top:1px solid var(--border);display:flex;gap:10px;flex-shrink:0;}
 .so-prev-btn{flex:1;padding:14px;background:var(--card);border:1px solid var(--border);color:var(--gray);font-family:'Bebas Neue',sans-serif;font-size:1rem;letter-spacing:3px;cursor:pointer;border-radius:var(--radius);}
@@ -194,7 +186,7 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .to-skip{background:var(--border2);color:var(--white);}
 
 /* ── SESSION COMPLETE ── */
-.session-complete{position:fixed;inset:0;background:var(--black);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:center;padding:32px;}
+.session-complete{position:fixed;inset:0;background:var(--black);z-index:150;display:flex;flex-direction:column;align-items:center;justify-content:flex-start;padding:32px;overflow-y:auto;padding-top:40px;}
 .session-complete.hidden{display:none;}
 .sc-icon{font-size:4rem;margin-bottom:16px;}
 .sc-title{font-family:'Bebas Neue',sans-serif;font-size:2.5rem;letter-spacing:4px;color:var(--green);margin-bottom:8px;text-align:center;}
@@ -209,6 +201,11 @@ body{background:var(--black);color:var(--white);font-family:'DM Sans',sans-serif
 .sc-pr-name{font-size:0.85rem;}
 .sc-pr-val{font-family:'Bebas Neue',sans-serif;color:var(--gold);font-size:1rem;}
 .sc-done-btn{width:100%;padding:16px;background:var(--green);color:var(--black);border:none;border-radius:var(--radius);font-family:'Bebas Neue',sans-serif;font-size:1.3rem;letter-spacing:4px;cursor:pointer;}
+.sc-charges{width:100%;margin-bottom:24px;}
+.sc-charge-row{display:flex;justify-content:space-between;align-items:center;padding:8px 0;border-bottom:1px solid var(--border);}
+.sc-charge-row:last-child{border-bottom:none;}
+.sc-charge-name{font-size:0.78rem;color:var(--gray2);}
+.sc-charge-val{font-family:'Bebas Neue',sans-serif;font-size:1rem;color:var(--green);letter-spacing:1px;}
 
 /* ── STATS PAGE ── */
 .stats-filters{display:flex;gap:6px;margin-bottom:16px;overflow-x:auto;padding-bottom:4px;}
@@ -237,6 +234,10 @@ canvas.st-chart{width:100%;height:110px;}
 .stats-empty{text-align:center;padding:60px 20px;color:var(--gray);}
 .stats-empty .ei{font-size:2.5rem;margin-bottom:12px;}
 .stats-empty p{font-size:0.82rem;line-height:1.7;letter-spacing:0.5px;}
+.stat-notes-block{margin-top:10px;border-top:1px solid var(--border);padding-top:8px;display:flex;flex-direction:column;gap:5px;}
+.stat-note-row{display:flex;gap:8px;align-items:baseline;}
+.stat-note-date{font-size:0.6rem;color:var(--gray);letter-spacing:1px;flex-shrink:0;white-space:nowrap;}
+.stat-note-text{font-size:0.72rem;color:var(--gray2);line-height:1.4;}
 
 /* ── TOAST ── */
 .toast{position:fixed;bottom:80px;left:50%;transform:translateX(-50%) translateY(20px);background:var(--card2);border:1px solid var(--border2);color:var(--white);padding:10px 20px;border-radius:999px;font-size:0.82rem;letter-spacing:1px;transition:all 0.3s ease;z-index:300;opacity:0;pointer-events:none;}
@@ -270,6 +271,7 @@ canvas.st-chart{width:100%;height:110px;}
   <div class="sc-title">SÉANCE TERMINÉE</div>
   <div class="sc-sub" id="scSub"></div>
   <div class="sc-stats" id="scStats"></div>
+  <div class="sc-charges" id="scCharges"></div>
   <div class="sc-prs" id="scPrs"></div>
   <button class="sc-done-btn" onclick="closeComplete()">RETOUR À L'ACCUEIL</button>
 </div>
@@ -299,7 +301,7 @@ canvas.st-chart{width:100%;height:110px;}
   <div class="page-header" style="display:flex;justify-content:space-between;align-items:flex-start;">
     <div>
       <h1 class="bebas">SPACE <em>BOOTY</em></h1>
-      <p>3 Phases · 4 Séances · 12 Semaines</p>
+      <p>3 Phases · 3 Séances · 12 Semaines</p>
     </div>
     <button onclick="resetAll()" style="background:transparent;border:1px solid var(--border2);color:var(--gray);padding:6px 10px;border-radius:var(--radius-sm);font-size:0.68rem;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;margin-top:4px;transition:all 0.2s;"
       onmouseover="this.style.borderColor='var(--red)';this.style.color='var(--red)'"
@@ -344,10 +346,9 @@ canvas.st-chart{width:100%;height:110px;}
     </div>
     <div class="sp-title" style="margin-top:12px">SÉANCE</div>
     <div class="sp-blocks" id="spBlocks">
-      <button class="sp-block-btn active" onclick="setPickBlock('bdc01')">BAS 01</button>
-      <button class="sp-block-btn" onclick="setPickBlock('hdc01')">HAUT 01 · PUSH</button>
-      <button class="sp-block-btn" onclick="setPickBlock('bdc02')">BAS 02</button>
-      <button class="sp-block-btn" onclick="setPickBlock('hdc02')">HAUT 02 · PULL</button>
+      <button class="sp-block-btn active" onclick="setPickBlock('bdc01')">BAS A</button>
+      <button class="sp-block-btn" onclick="setPickBlock('bdc02')">BAS B</button>
+      <button class="sp-block-btn" onclick="setPickBlock('hdc01')">HAUT DU CORPS</button>
     </div>
   </div>
 
@@ -398,104 +399,75 @@ let DATA = {
 // ─────────────────────────────────────────────
 const EX = {
   1:{
-    bdc01:{label:'BAS DU CORPS 01',list:[
-      {name:'HIP THRUST',s:4,reps:'10-12',tempo:'2-0-1-2',repos:'2:00',reposSec:120,note:'Pause 2 sec en haut du mouvement',alt:'Haltère · Barre guidée · Machine hip thrust'},
-      {name:'DB ROMANIAN DEADLIFT',s:4,reps:'10-12',tempo:'3-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'Trap bar · Barre guidée'},
-      {name:'DB SPLIT SQUAT',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'Avec banc'},
-      {name:'LEGPRESS UNILATERAL',s:3,reps:'15',tempo:'3-0-1-1',repos:'1:30',reposSec:90,note:'',alt:''},
-      {name:'BACK EXTENSION',s:3,reps:'15',tempo:'3-1-2-0',repos:'1:00',reposSec:60,note:'',alt:'Good morning · Kettlebell swing'},
+    bdc01:{label:'BAS DU CORPS A — Glutes + Post Chain',list:[
+      {name:'HIP THRUST',s:4,reps:'8-10',tempo:'2-0-1-2',repos:'2:30-3:00',reposSec:165,note:'Pause 2 sec en haut · Lourd',alt:'Haltère · Barre guidée · Machine hip thrust'},
+      {name:'ROMANIAN DEADLIFT',s:4,reps:'8-10',tempo:'3-0-2-0',repos:'2:00',reposSec:120,note:'Bien étirer les ischios',alt:'Haltères · Trap bar · Barre guidée'},
+      {name:'BULGARIAN SPLIT SQUAT',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'1:30-2:00',reposSec:105,note:'Contrôle de la descente',alt:'Avec banc · Barre guidée'},
+      {name:'BACK EXTENSION',s:3,reps:'12-15',tempo:'3-1-2-0',repos:'1:00-1:30',reposSec:75,note:'Serre bien les fessiers en haut',alt:'Good morning · Kettlebell swing'},
     ]},
-    bdc02:{label:'BAS DU CORPS 02',list:[
-      {name:'HIP THRUST',s:4,reps:'10-12',tempo:'2-0-1-2',repos:'2:00',reposSec:120,note:'Pause 2 sec en haut du mouvement',alt:'Haltère · Barre guidée · Machine hip thrust'},
-      {name:'DB SQUAT',s:4,reps:'10-12',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
-      {name:'DB ROMANIAN DEADLIFT',s:4,reps:'10-12',tempo:'3-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée · Trap bar'},
-      {name:'STEP UP',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
-      {name:'KICKBACK 45°',s:3,reps:'15',tempo:'3-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Machine kickback'},
+    bdc02:{label:'BAS DU CORPS B — Glutes + Quad',list:[
+      {name:'KAS GLUTE BRIDGE',s:4,reps:'8-10',tempo:'2-0-1-2',repos:'2:00',reposSec:120,note:'Plus lourd que le Hip Thrust classique',alt:'Haltère · Barre guidée · Machine'},
+      {name:'SUMO SQUAT',s:4,reps:'8-10',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'Profondeur correcte · Focus glutes + adducteurs',alt:'Haltère · Barre guidée'},
+      {name:'LEG PRESS UNILATÉRAL',s:3,reps:'10-12',tempo:'3-0-1-1',repos:'1:30-2:00',reposSec:105,note:'Bien pousser avec le talon',alt:''},
+      {name:'KICKBACK 45°',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'1:00-1:30',reposSec:75,note:'Contrôle total du mouvement',alt:'Machine kickback · Câble'},
     ]},
-    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
-      {name:'DB BENCH',s:4,reps:'10-12',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
-      {name:'SHOULDER PRESS',s:4,reps:'10-12',tempo:'3-0-1-1',repos:'2:00',reposSec:120,note:'',alt:'Machine'},
-      {name:'LATERAL RAISE',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00',reposSec:120,note:'',alt:'À la poulie'},
-      {name:'TRICEPS EXTENSION',s:4,reps:'15',tempo:'2-0-1-2',repos:'2:00',reposSec:120,note:'',alt:'À la poulie · Debout'},
-      {name:'PUSH UP ASSISTED',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'1:00',reposSec:60,note:'',alt:''},
-    ]},
-    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
-      {name:'ASSISTED PULL UP',s:4,reps:'10-12',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:'Machine'},
-      {name:'LAT PULLDOWN SUPINATION',s:3,reps:'12-15',tempo:'3-0-1-2',repos:'2:00',reposSec:120,note:'',alt:''},
-      {name:'CABLE ROW NEUTRE',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:'DB row'},
-      {name:'CABLE PULLOVER',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'2:00',reposSec:120,note:'',alt:''},
-      {name:'CABLE FACEPULL',s:3,reps:'15-20',tempo:'3-0-1-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
-      {name:'DB BICEPS CURL',s:3,reps:'15-20',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Haltères · Barre guidée'},
+    hdc01:{label:'HAUT DU CORPS — Focus Dos',list:[
+      {name:'LAT PULLDOWN (prise large)',s:4,reps:'8-10',tempo:'3-0-1-2',repos:'2:00',reposSec:120,note:'Focus largeur du dos',alt:'Prise pronation · Machine'},
+      {name:'SINGLE ARM ROW',s:4,reps:'10-12',tempo:'2-0-2-1',repos:'1:30-2:00',reposSec:105,note:'Focus épaisseur du dos',alt:'Seated cable row · DB row'},
+      {name:'DB BENCH PRESS',s:3,reps:'8-10',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
+      {name:'DB SHOULDER PRESS',s:3,reps:'8-10',tempo:'3-0-1-1',repos:'1:30',reposSec:90,note:'Épaules déjà sollicitées comme stabilisateurs — charge modérée',alt:'Machine'},
+      {name:'FACE PULL',s:3,reps:'12-15',tempo:'2-0-2-1',repos:'1:00-1:15',reposSec:67,note:'Arrière épaules + haut du dos',alt:'Avec élastique'},
+      {name:'BICEPS CURL + TRICEPS EXT (superset)',s:3,reps:'12-15',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'Enchaîner sans pause entre les deux',alt:'Haltères · Poulie'},
     ]},
   },
   2:{
-    bdc01:{label:'BAS DU CORPS 01',list:[
-      {name:'KAS GLUTE BRIDGE',s:4,reps:'10',tempo:'2-0-1-1',repos:'3:00',reposSec:180,note:'Tourner les pointes de pieds vers l\'extérieur',alt:'Haltère · Barre guidée · Machine hip thrust'},
-      {name:'ROMANIAN DEADLIFT',s:4,reps:'8-10',tempo:'3-0-1-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Trap bar · Barre guidée'},
-      {name:'STEP UP',s:3,reps:'10-12',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Barre guidée'},
-      {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'1:00',reposSec:60,note:'',alt:''},
-      {name:'KICKBACK 45°',s:3,reps:'15',tempo:'3-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Machine kickback'},
+    bdc01:{label:'BAS DU CORPS A — Glutes + Post Chain',list:[
+      {name:'KAS GLUTE BRIDGE',s:4,reps:'8-10',tempo:'2-0-1-2',repos:'2:30-3:00',reposSec:165,note:'Pointes de pieds vers l\'extérieur · Lourd',alt:'Haltère · Barre guidée · Machine hip thrust'},
+      {name:'ROMANIAN DEADLIFT',s:4,reps:'8-10',tempo:'3-0-2-0',repos:'2:00',reposSec:120,note:'Bien étirer les ischios',alt:'Trap bar · Barre guidée'},
+      {name:'STEP UP',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'1:30-2:00',reposSec:105,note:'Contrôle',alt:'Barre guidée'},
+      {name:'KICKBACK 45°',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'1:00-1:30',reposSec:75,note:'Focus fessier · Contrôle du mouvement',alt:'Machine kickback · Câble'},
     ]},
-    bdc02:{label:'BAS DU CORPS 02',list:[
-      {name:'HIP THRUST',s:3,reps:'10',tempo:'X-X-X-X',repos:'—',reposSec:0,note:'BISET · Rester 10 sec au-dessus après la 10e rép du KAS',alt:'Barre guidée · Machine hip thrust',biset:true},
-      {name:'KAS GLUTE BRIDGE',s:3,reps:'10',tempo:'X-X-X-X',repos:'3:00',reposSec:180,note:'BISET avec Hip Thrust',alt:'Barre guidée',biset:true},
-      {name:'BB SQUAT',s:4,reps:'8-10',tempo:'2-1-0-2',repos:'2:00/3:00',reposSec:150,note:'',alt:'Barre guidée'},
-      {name:'LEGPRESS UNILATERAL',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'KICKBACK 45°',s:3,reps:'15',tempo:'4-0-2-0',repos:'1:00/2:00',reposSec:90,note:'',alt:''},
+    bdc02:{label:'BAS DU CORPS B — Glutes + Quad',list:[
+      {name:'HIP THRUST',s:4,reps:'8-10',tempo:'2-0-1-2',repos:'2:00-2:30',reposSec:135,note:'Pause 2 sec en haut',alt:'Haltère · Barre guidée · Machine hip thrust'},
+      {name:'SUMO SQUAT (BB ou DB)',s:4,reps:'8-10',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'Profondeur correcte · Focus glutes + adducteurs',alt:'Barre guidée · Haltère'},
+      {name:'LEG PRESS UNILATÉRAL',s:3,reps:'10-12',tempo:'3-0-1-1',repos:'1:30-2:00',reposSec:105,note:'Pousser avec le talon',alt:''},
+      {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-1-2-0',repos:'1:00-1:30',reposSec:75,note:'Serre les fessiers en haut',alt:''},
     ]},
-    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
-      {name:'DB BENCH',s:4,reps:'8-10',tempo:'2-1-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Barre guidée'},
-      {name:'DB SHOULDER PRESS',s:4,reps:'8-10',tempo:'2-1-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
-      {name:'CHEST FLY',s:4,reps:'10-12',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
-      {name:'TRICEPS EXTENSION',s:3,reps:'10-12',tempo:'2-0-1-2',repos:'1:00',reposSec:60,note:'',alt:'À la poulie · Debout'},
-      {name:'DIPS ASSISTED',s:3,reps:'MAX',tempo:'X-X-X-X',repos:'1:00',reposSec:60,note:'',alt:''},
-    ]},
-    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
-      {name:'PULL UP ASSISTED',s:4,reps:'8-10',tempo:'3-0-1-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Machine'},
-      {name:'LAT PULLDOWN PRONATION',s:3,reps:'8-10',tempo:'3-0-1-2',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'DB ROW',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:'Avec câble'},
-      {name:'SINGLE ARM HIGH CABLE ROW',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'CABLE FACEPULL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
-      {name:'CABLE BICEPS CURL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Haltères'},
+    hdc01:{label:'HAUT DU CORPS — Focus Dos',list:[
+      {name:'LAT PULLDOWN (prise pronation)',s:4,reps:'8-10',tempo:'3-0-1-2',repos:'2:00',reposSec:120,note:'Dos — largeur',alt:'Machine · Prise large'},
+      {name:'SINGLE ARM ROW ou DB ROW',s:4,reps:'10-12',tempo:'2-0-2-1',repos:'1:30-2:00',reposSec:105,note:'Dos — épaisseur',alt:'Seated cable row'},
+      {name:'DB BENCH PRESS',s:3,reps:'8-10',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
+      {name:'DB SHOULDER PRESS',s:3,reps:'8-10',tempo:'3-0-1-1',repos:'1:30',reposSec:90,note:'Épaules déjà sollicitées comme stabilisateurs — charge modérée',alt:'Machine'},
+      {name:'FACE PULL ou CABLE PULLOVER',s:3,reps:'12-15',tempo:'2-0-2-1',repos:'1:00-1:15',reposSec:67,note:'Haut du dos + arrière épaules',alt:'Avec élastique'},
+      {name:'BICEPS CURL + TRICEPS EXT (superset)',s:3,reps:'12-15',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'Enchaîner sans pause entre les deux',alt:'Haltères · Poulie'},
     ]},
   },
   3:{
-    bdc01:{label:'BAS DU CORPS 01 — CHARGES +++',list:[
-      {name:'KAS GLUTE BRIDGE',s:4,reps:'12-10-8-6',tempo:'2-0-1-1',repos:'3:00',reposSec:180,note:'Tourner les pointes de pieds vers l\'extérieur',alt:'Haltère · Barre guidée · Machine hip thrust'},
-      {name:'BB SQUAT',s:4,reps:'6-8',tempo:'3-0-1-0',repos:'3:00',reposSec:180,note:'',alt:'Avec haltères'},
-      {name:'STEP UP',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'3:00',reposSec:180,note:'',alt:'Legpress unilatérale'},
-      {name:'BACK EXTENSION',s:3,reps:'8-10',tempo:'3-0-2-0',repos:'1:00/1:30',reposSec:75,note:'',alt:''},
-      {name:'KICKBACK 45°',s:3,reps:'15',tempo:'3-0-2-1',repos:'1:00/1:30',reposSec:75,note:'Pas besoin de charger lourd',alt:'Machine kickback'},
+    bdc01:{label:'BAS DU CORPS A — Glutes + Post Chain +++',list:[
+      {name:'KAS GLUTE BRIDGE',s:4,reps:'8-10',tempo:'3-0-1-3',repos:'2:30-3:00',reposSec:165,note:'Pointes vers l\'extérieur · Très lourd · Pause 3 sec en haut',alt:'Haltère · Barre guidée · Machine hip thrust'},
+      {name:'ROMANIAN DEADLIFT',s:4,reps:'8-10',tempo:'4-0-2-0',repos:'2:00',reposSec:120,note:'Charges lourdes · Descente très lente · Bien étirer les ischios',alt:'Trap bar · Barre guidée'},
+      {name:'BULGARIAN SPLIT SQUAT',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'1:30-2:00',reposSec:105,note:'Contrôle',alt:'Avec banc · Barre guidée'},
+      {name:'KICKBACK 45°',s:3,reps:'12-15',tempo:'3-0-2-1',repos:'1:00-1:30',reposSec:75,note:'Pas besoin de très lourd — contrôle total',alt:'Machine kickback · Câble'},
     ]},
-    bdc02:{label:'BAS DU CORPS 02 — CHARGES +++',list:[
-      {name:'HIP THRUST',s:4,reps:'12-10-8-6',tempo:'2-0-1-1',repos:'2:00/3:00',reposSec:150,note:'',alt:'Haltère · Barre guidée · Machine hip thrust'},
-      {name:'ROMANIAN DEADLIFT',s:3,reps:'8-10',tempo:'2-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Barre guidée'},
-      {name:'DB SPLIT SQUAT',s:3,reps:'8-10',tempo:'X-X-X-X',repos:'—',reposSec:0,note:'BISET avec Split Squat BW',alt:'',biset:true},
-      {name:'SPLIT SQUAT BODYWEIGHT',s:3,reps:'8-10',tempo:'X-X-X-X',repos:'3:00/4:00',reposSec:210,note:'BISET avec DB Split Squat',alt:'',biset:true},
-      {name:'LEGPRESS',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-0-2-0',repos:'1:00/2:00',reposSec:90,note:'',alt:''},
+    bdc02:{label:'BAS DU CORPS B — Glutes + Quad +++',list:[
+      {name:'HIP THRUST',s:4,reps:'8-10',tempo:'3-0-1-3',repos:'2:30-3:00',reposSec:165,note:'Très lourd · Pause 3 sec en haut',alt:'Haltère · Barre guidée · Machine hip thrust'},
+      {name:'BB SQUAT',s:4,reps:'6-8',tempo:'3-1-1-0',repos:'2:30-3:00',reposSec:165,note:'Charges lourdes',alt:'Barre guidée'},
+      {name:'LEG PRESS UNILATÉRAL',s:3,reps:'10-12',tempo:'3-0-1-1',repos:'1:30-2:00',reposSec:105,note:'Focus fessier · Pousser avec le talon',alt:''},
+      {name:'BACK EXTENSION',s:3,reps:'10-12',tempo:'3-1-2-0',repos:'1:00-1:30',reposSec:75,note:'Focus fessiers',alt:''},
     ]},
-    hdc01:{label:'HAUT DU CORPS 01 — PUSH',list:[
-      {name:'BB BENCH',s:4,reps:'8-10',tempo:'2-0-2-0',repos:'3:00',reposSec:180,note:'',alt:'Avec haltères'},
-      {name:'BB OVERHEAD PRESS',s:4,reps:'8-10',tempo:'2-0-2-0',repos:'3:00',reposSec:180,note:'',alt:'Shoulder press'},
-      {name:'LATERAL RAISE',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'—',reposSec:0,note:'BISET avec Front Raise · Pas besoin de charger lourd',alt:'À la poulie',biset:true},
-      {name:'FRONT RAISE',s:3,reps:'10-12',tempo:'X-X-X-X',repos:'2:00',reposSec:120,note:'BISET avec Lateral Raise',alt:'',biset:true},
-      {name:'TRICEPS EXTENSION HALTÈRES',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00/1:30',reposSec:75,note:'',alt:'À la poulie'},
-    ]},
-    hdc02:{label:'HAUT DU CORPS 02 — PULL',list:[
-      {name:'ASSISTED PULL UP',s:5,reps:'6-8',tempo:'3-0-1-0',repos:'2:00/3:00',reposSec:150,note:'',alt:'Sans élastique'},
-      {name:'LAT PULLDOWN PRONATION',s:3,reps:'8-10',tempo:'3-0-1-2',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'CABLE ROW NEUTRE',s:3,reps:'8-10',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'SINGLE ARM HIGH CABLE ROW',s:3,reps:'8-10',tempo:'2-0-2-1',repos:'2:00/3:00',reposSec:150,note:'',alt:''},
-      {name:'CABLE FACEPULL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec élastique'},
-      {name:'BB BICEPS CURL',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'',alt:'Avec haltères'},
+    hdc01:{label:'HAUT DU CORPS — Focus Dos +++',list:[
+      {name:'LAT PULLDOWN',s:4,reps:'8-10',tempo:'3-0-1-2',repos:'2:00',reposSec:120,note:'Dos — largeur',alt:'Prise pronation · Machine · Prise large'},
+      {name:'SINGLE ARM HIGH CABLE ROW ou DB ROW',s:4,reps:'8-10',tempo:'2-0-2-1',repos:'1:30-2:00',reposSec:105,note:'Dos — épaisseur',alt:'Seated cable row'},
+      {name:'DB BENCH PRESS ou BB BENCH',s:3,reps:'8-10',tempo:'3-1-1-0',repos:'2:00',reposSec:120,note:'',alt:'Barre guidée'},
+      {name:'DB SHOULDER PRESS',s:3,reps:'8-10',tempo:'3-0-1-1',repos:'1:30',reposSec:90,note:'Épaules déjà sollicitées comme stabilisateurs — charge modérée',alt:'Machine'},
+      {name:'FACE PULL',s:3,reps:'12-15',tempo:'2-0-2-1',repos:'1:00-1:15',reposSec:67,note:'Haut du dos + arrière épaules',alt:'Avec élastique'},
+      {name:'BICEPS CURL + TRICEPS EXT (superset)',s:3,reps:'10-12',tempo:'2-0-2-1',repos:'1:00',reposSec:60,note:'Enchaîner sans pause entre les deux',alt:'Haltères · Poulie'},
     ]},
   },
 };
 
 // Ordre canonique des séances (bas/haut · push/pull)
-const BLOCKS = ['bdc01','hdc01','bdc02','hdc02'];
+const BLOCKS = ['bdc01','bdc02','hdc01'];
 const BLOCKS_PER_PHASE = BLOCKS.length;
 
 // Total sessions per phase/block = 4 weeks
@@ -506,10 +478,9 @@ const TOTAL_SESSIONS_PER = 4;
 // ─────────────────────────────────────────────
 function prKey(p,bk,ei){ return `${p}-${bk}-${ei}`; }
 function getPR(p,bk,ei){ return (DATA.prs[prKey(p,bk,ei)] || {val:0}).val; }
-function getPRDate(p,bk,ei){ return (DATA.prs[prKey(p,bk,ei)] || {}).date || null; }
 function setPR(p,bk,ei,val){ DATA.prs[prKey(p,bk,ei)] = {val, date: new Date().toISOString()}; }
 
-function getSessionsFor(p,bk){ return DATA.sessions.filter(s=>s.phase===p&&s.block===bk); }
+function getSessionsFor(p,bk){ return DATA.sessions.filter(s=>s.phase===p&&s.block===bk&&!s.incomplete); }
 function getSessionCount(p,bk){ return getSessionsFor(p,bk).length; }
 function getTotalDone(){ return DATA.sessions.length; }
 
@@ -530,18 +501,6 @@ function getLastSession(p,bk){
   return ss.length > 0 ? ss[ss.length-1] : null;
 }
 
-// Get best weight per exercise from all sessions
-function getBestWeight(p,bk,ei){
-  let best = 0;
-  getSessionsFor(p,bk).forEach(sess=>{
-    const ex = EX[p][bk].list[ei];
-    for(let s=0;s<ex.s;s++){
-      const v = parseFloat(sess.weights[`${ei}-${s}`] || 0);
-      if(v > best) best = v;
-    }
-  });
-  return best;
-}
 
 // Get avg weight for an exercise per session (for chart)
 function getSessionWeights(p,bk,ei){
@@ -560,24 +519,25 @@ function getSessionWeights(p,bk,ei){
 // AUTO SAVE
 // ─────────────────────────────────────────────
 function autoSave(){
-  try{ localStorage.setItem('sb_v5', JSON.stringify(DATA)); }catch(e){}
+  try{ localStorage.setItem('sb_v5', JSON.stringify(DATA)); }
+  catch(e){ showToast('⚠️ Sauvegarde impossible — stockage plein ou indisponible'); }
 }
 
-// ── WIP (séance en cours) ──────────────────────
-function saveWip(){
-  if(!sessionStartTime) return; // pas de séance active
+function saveWIP(){
   try{
-    localStorage.setItem('sb_wip', JSON.stringify({
+    const wip = {
       phase: sPhase, block: sBk, idx: sIdx,
-      order: sessionOrder,
-      data: sessionData,
-      startTime: sessionStartTime
-    }));
+      startTime: sessionStartTime,
+      weights: {...sessionData.weights},
+      notes: {...sessionData.notes},
+      serieNotes: {...sessionData.serieNotes}
+    };
+    localStorage.setItem('sb_v5_wip', JSON.stringify(wip));
   }catch(e){}
 }
 
-function clearWip(){
-  try{ localStorage.removeItem('sb_wip'); }catch(e){}
+function clearWIP(){
+  try{ localStorage.removeItem('sb_v5_wip'); }catch(e){}
 }
 
 function loadData(){
@@ -618,7 +578,7 @@ function switchPage(page){
 // ─────────────────────────────────────────────
 function renderHome(){
   // Progress
-  const totalPossible = 3 * BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 3 phases × 4 séances × 4 semaines
+  const totalPossible = 3 * BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 3 phases × 3 séances × 4 semaines
   const done = getTotalDone();
   const pct = Math.round((done/totalPossible)*100);
   document.getElementById('heroTitle').textContent = pct + '%';
@@ -628,7 +588,7 @@ function renderHome(){
   // Phase strip
   const strip = document.getElementById('phaseStrip');
   strip.innerHTML = '';
-  const perPhase = BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 16
+  const perPhase = BLOCKS_PER_PHASE * TOTAL_SESSIONS_PER; // 12
   [1,2,3].forEach(p=>{
     const total = BLOCKS.reduce((sum,bk)=>sum+getSessionCount(p,bk),0);
     const isComplete = total >= perPhase;
@@ -663,7 +623,14 @@ function renderHome(){
 
   // Recent PRs
   const prList = document.getElementById('prList');
-  const prEntries = Object.entries(DATA.prs).filter(([,v])=>v>0).slice(-6).reverse();
+  const prEntries = Object.entries(DATA.prs)
+    .filter(([,v])=>(typeof v==='object'?v.val:v)>0)
+    .sort((a,b)=>{
+      const da = (typeof a[1]==='object'&&a[1].date) ? new Date(a[1].date) : 0;
+      const db = (typeof b[1]==='object'&&b[1].date) ? new Date(b[1].date) : 0;
+      return db - da;
+    })
+    .slice(0,6);
   if(prEntries.length === 0){
     prList.innerHTML = `<div style="color:var(--gray);font-size:0.82rem;padding:12px 0;">Tes PRs apparaîtront ici après ta première séance.</div>`;
   } else {
@@ -674,12 +641,15 @@ function renderHome(){
       const prData = DATA.prs[key];
       const prVal = typeof prData === 'object' ? prData.val : prData;
       const prDate = typeof prData === 'object' ? formatDate(prData.date) : '—';
-      return `<div class="pr-item">
+      return `<div class="pr-item" onclick="statsBlock='${bk}';statsPhase=${p};switchPage('stats')" style="cursor:pointer;">
         <div>
           <div class="pr-item-name">${ex.name}</div>
           <div style="font-size:0.68rem;color:var(--gray)">Phase ${p} · ${prDate}</div>
         </div>
-        <div class="pr-item-val">🏆 ${prVal}kg</div>
+        <div style="display:flex;align-items:center;gap:6px;">
+          <div class="pr-item-val">🏆 ${prVal}kg</div>
+          <span style="font-size:0.6rem;color:var(--gray)">→</span>
+        </div>
       </div>`;
     }).join('');
   }
@@ -752,15 +722,16 @@ function reorderPick(pos, dir){
 // ─────────────────────────────────────────────
 let sPhase=1, sBk='bdc01', sIdx=0;
 let sessionOrder = []; // indices into EX[sPhase][sBk].list
-let sessionData = { weights:{}, notes:{}, prs:[] };
+let sessionData = { weights:{}, notes:{}, serieNotes:{}, prs:[] };
 let sessionStartTime = null;
 
 function startSession(){
   sPhase = pickPhase; sBk = pickBlock; sIdx = 0;
   // Initialize order as default
   sessionOrder = EX[sPhase][sBk].list.map((_,i)=>i);
-  sessionData = { weights:{}, notes:{}, prs:[] };
+  sessionData = { weights:{}, notes:{}, serieNotes:{}, prs:[] };
   sessionStartTime = Date.now();
+  clearWIP();
 
   // Pre-fill with last session values
   const lastSess = getLastSession(sPhase, sBk);
@@ -802,15 +773,11 @@ function renderSessionStep(){
   const hasPrev = prevWeights.some(v=>v!=='');
 
   let html = `
-    <div class="so-reorder-bar">
-      <button class="so-reorder-btn" onclick="reorderSession(-1)" ${sIdx===0?'disabled':''}>▲ REMONTER</button>
-      <button class="so-reorder-btn" onclick="reorderSession(1)" ${sIdx===total-1?'disabled':''}>▼ DESCENDRE</button>
-    </div>
     <div class="so-ex-num">Exercice ${sIdx+1} sur ${total}</div>
     <div class="so-ex-name">${ex.name}</div>
     <div class="so-pills">
       <span class="so-pill sop-reps">${ex.reps} REPS</span>
-      <span class="so-pill sop-tempo">${ex.tempo}</span>
+      <span class="so-pill sop-tempo" title="Descente · Pause bas · Montée · Pause haut">${ex.tempo} <span style="font-size:0.6rem;opacity:0.6">d·b·m·h</span></span>
       ${ex.reposSec>0?`<button class="so-pill sop-timer" onclick="startTimer(${ex.reposSec},'${ex.name}')">⏱ ${ex.repos}</button>`:''}
       ${ex.biset?'<span class="so-pill sop-biset">BISET</span>':''}
     </div>
@@ -843,14 +810,15 @@ function renderSessionStep(){
         value="${currVal}" id="si-${s}"
         oninput="onSerieInput(${s},this.value)"
         onblur="onSerieInput(${s},this.value)">
+      <textarea class="so-serie-note" id="sn-${s}" placeholder="note…"
+        oninput="sessionData.serieNotes['${exIdx}-${s}']=this.value">${sessionData.serieNotes[`${exIdx}-${s}`]||''}</textarea>
     </div>`;
   }
   html+=`</div>`;
 
-  // Note — keyed by exIdx
   const noteVal = sessionData.notes[exIdx] || '';
-  html+=`<div class="so-ex-note-label">Note (optionnel)</div>
-    <textarea class="so-ex-note" placeholder="Sensations, corrections..." oninput="sessionData.notes[${exIdx}]=this.value">${noteVal}</textarea>`;
+  html+=`<div class="so-ex-note-label">Commentaire général</div>
+    <textarea class="so-ex-note" placeholder="Sensations, corrections, à retenir..." oninput="sessionData.notes[${exIdx}]=this.value">${noteVal}</textarea>`;
 
   document.getElementById('soBody').innerHTML = html;
   document.getElementById('soBody').scrollTop = 0;
@@ -864,17 +832,6 @@ function onSerieInput(si, val){
   const pr = getPR(sPhase, sBk, exIdx);
   const v = parseFloat(val);
   input.classList.toggle('is-pr', v > pr && pr > 0 && !isNaN(v));
-  saveWip();
-}
-
-function reorderSession(dir){
-  saveCurrentStep();
-  const newPos = sIdx + dir;
-  if(newPos < 0 || newPos >= sessionOrder.length) return;
-  [sessionOrder[sIdx], sessionOrder[newPos]] = [sessionOrder[newPos], sessionOrder[sIdx]];
-  sIdx = newPos;
-  renderSessionStep();
-  showToast(`↕ Exercice déplacé en position ${newPos+1}`);
 }
 
 function saveCurrentStep(){
@@ -884,10 +841,12 @@ function saveCurrentStep(){
   for(let s=0;s<ex.s;s++){
     const inp = document.getElementById(`si-${s}`);
     if(inp) sessionData.weights[`${exIdx}-${s}`] = inp.value;
+    const sn = document.getElementById(`sn-${s}`);
+    if(sn) sessionData.serieNotes[`${exIdx}-${s}`] = sn.value;
   }
   const noteEl = document.querySelector('.so-ex-note');
   if(noteEl) sessionData.notes[exIdx] = noteEl.value;
-  saveWip();
+  saveWIP();
 }
 
 function sessionPrev(){
@@ -901,6 +860,9 @@ function sessionNext(){
   if(sIdx < list.length-1){
     sIdx++;
     renderSessionStep();
+    // Auto-start rest timer
+    const prevEx = list[sessionOrder[sIdx-1]];
+    if(prevEx && prevEx.reposSec > 0) startTimer(prevEx.reposSec, prevEx.name);
   } else {
     finishSession();
   }
@@ -936,11 +898,12 @@ function finishSession(){
     date: new Date().toISOString(),
     weights: {...sessionData.weights},
     notes: {...sessionData.notes},
+    serieNotes: {...sessionData.serieNotes},
     prs: newPRs.map(p=>({exIdx:p.ei, val:p.val}))
   };
   DATA.sessions.push(sess);
   autoSave();
-  clearWip();
+  clearWIP();
 
   document.getElementById('sessionOverlay').classList.add('hidden');
   showComplete(sess, newPRs);
@@ -958,6 +921,21 @@ function showComplete(sess, newPRs){
     <div class="sc-stat"><div class="sc-stat-val">${EX[sPhase][sBk].list.length}</div><div class="sc-stat-lbl">Exercices</div></div>
     <div class="sc-stat"><div class="sc-stat-val">${newPRs.length}</div><div class="sc-stat-lbl">Nouveaux PRs</div></div>
     <div class="sc-stat"><div class="sc-stat-val">${count}/4</div><div class="sc-stat-lbl">Semaines</div></div>`;
+
+  // Résumé des charges par exercice
+  const list = EX[sPhase][sBk].list;
+  const chargeRows = sessionOrder.map(exIdx=>{
+    const ex = list[exIdx];
+    let maxW = 0;
+    for(let s=0;s<ex.s;s++){
+      const v = parseFloat(sess.weights[exIdx+'-'+s]||0);
+      if(v>maxW) maxW=v;
+    }
+    return maxW>0 ? `<div class="sc-charge-row"><span class="sc-charge-name">${ex.name}</span><span class="sc-charge-val">${maxW} kg</span></div>` : '';
+  }).filter(Boolean).join('');
+  document.getElementById('scCharges').innerHTML = chargeRows
+    ? '<div style="font-size:0.6rem;letter-spacing:2px;color:var(--gray);text-transform:uppercase;margin-bottom:8px">Charges du jour</div>' + chargeRows
+    : '';
 
   if(newPRs.length > 0){
     document.getElementById('scPrs').innerHTML = `
@@ -980,12 +958,12 @@ function closeComplete(){
 
 function confirmCloseSession(){
   const existing = document.getElementById('closeConfirm');
-  if(existing){ existing.remove(); return; }
+  if(existing) return;
   const box = document.createElement('div');
   box.id = 'closeConfirm';
   box.style.cssText = `position:fixed;bottom:80px;left:50%;transform:translateX(-50%);background:#0d0d0d;border:1px solid var(--border2);border-radius:10px;padding:16px 18px;z-index:400;width:280px;text-align:center;`;
   box.innerHTML = `
-    <div style="font-size:0.78rem;color:#ccc;margin-bottom:12px;line-height:1.5">Quitter la séance ?<br><span style="color:var(--gray);font-size:0.72rem">Ta progression ne sera pas sauvegardée.</span></div>
+    <div style="font-size:0.78rem;color:#ccc;margin-bottom:12px;line-height:1.5">Quitter la séance ?<br><span style="color:var(--gray);font-size:0.72rem">Les charges saisies seront conservées.</span></div>
     <div style="display:flex;gap:8px;">
       <button onclick="document.getElementById('closeConfirm').remove()" style="flex:1;padding:10px;background:var(--card);border:1px solid var(--border);color:var(--gray);border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:2px;cursor:pointer;">ANNULER</button>
       <button onclick="doCloseSession()" style="flex:1;padding:10px;background:var(--card);border:1px solid var(--border2);color:var(--white);border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:2px;cursor:pointer;">QUITTER</button>
@@ -997,7 +975,7 @@ function doCloseSession(){
   const box = document.getElementById('closeConfirm');
   if(box) box.remove();
   closeTimer();
-  clearWip();
+  clearWIP();
   document.getElementById('sessionOverlay').classList.add('hidden');
 }
 
@@ -1007,6 +985,11 @@ function doCloseSession(){
 let statsPhase = 0, statsBlock = 'bdc01'; // 0 = all
 
 function renderStats(){
+  // Auto-select block of last completed session
+  if(DATA.sessions.length > 0){
+    const last = DATA.sessions.filter(s=>!s.incomplete).slice(-1)[0];
+    if(last){ statsBlock = last.block; statsPhase = last.phase; }
+  }
   // Filters
   const filters = document.getElementById('statsFilters');
   filters.innerHTML = `
@@ -1014,10 +997,9 @@ function renderStats(){
     <button class="sf-btn ${statsPhase===1?'active':''}" onclick="setStatsPhase(1)">PHASE 1</button>
     <button class="sf-btn ${statsPhase===2?'active':''}" onclick="setStatsPhase(2)">PHASE 2</button>
     <button class="sf-btn ${statsPhase===3?'active':''}" onclick="setStatsPhase(3)">PHASE 3</button>
-    <button class="sf-btn ${statsBlock==='bdc01'?'active':''}" onclick="setStatsBlock('bdc01')">BAS 01</button>
-    <button class="sf-btn ${statsBlock==='hdc01'?'active':''}" onclick="setStatsBlock('hdc01')">HAUT 01</button>
-    <button class="sf-btn ${statsBlock==='bdc02'?'active':''}" onclick="setStatsBlock('bdc02')">BAS 02</button>
-    <button class="sf-btn ${statsBlock==='hdc02'?'active':''}" onclick="setStatsBlock('hdc02')">HAUT 02</button>`;
+    <button class="sf-btn ${statsBlock==='bdc01'?'active':''}" onclick="setStatsBlock('bdc01')">BAS A</button>
+    <button class="sf-btn ${statsBlock==='bdc02'?'active':''}" onclick="setStatsBlock('bdc02')">BAS B</button>
+    <button class="sf-btn ${statsBlock==='hdc01'?'active':''}" onclick="setStatsBlock('hdc01')">HAUT DU CORPS</button>`;
 
   const phases = statsPhase === 0 ? [1,2,3] : [statsPhase];
   const bk = statsBlock;
@@ -1041,7 +1023,6 @@ function renderStats(){
       const lastMax = validData[validData.length-1].max;
       const gained = (lastMax - firstMax).toFixed(1);
       const trendUp = lastMax >= firstMax;
-      const progPct = firstMax > 0 ? ((lastMax-firstMax)/firstMax*100).toFixed(0) : 0;
 
       html+=`<div class="stat-card">
         <div class="stat-card-head">
@@ -1060,6 +1041,24 @@ function renderStats(){
             <div class="ss-cell"><div class="ss-lbl">Actuel</div><div class="ss-val green">${lastMax}<span style="font-size:0.7rem">kg</span></div></div>
             <div class="ss-cell"><div class="ss-lbl">PR</div><div class="ss-val gold">${maxVal}<span style="font-size:0.7rem">kg</span></div></div>
           </div>
+          ${(()=>{
+            // Collect all notes (exercise + serie) for this exercise across sessions
+            const noteLines = [];
+            sessions.forEach(sess=>{
+              const d = formatDate(sess.date);
+              const exNote = sess.notes?.[ei];
+              if(exNote && exNote.trim()) noteLines.push({date:d, text:exNote.trim(), type:'ex'});
+              const ex2 = EX[p][bk].list[ei];
+              for(let s=0;s<ex2.s;s++){
+                const sn = sess.serieNotes?.[ei+'-'+s];
+                if(sn && sn.trim()) noteLines.push({date:d, text:'S'+(s+1)+' : '+sn.trim(), type:'serie'});
+              }
+            });
+            if(noteLines.length === 0) return '';
+            return '<div class="stat-notes-block">' +
+              noteLines.map(n=>`<div class="stat-note-row"><span class="stat-note-date">${n.date}</span><span class="stat-note-text">${n.text}</span></div>`).join('') +
+              '</div>';
+          })()}
         </div>
       </div>`;
     });
@@ -1078,7 +1077,7 @@ function renderStats(){
   requestAnimationFrame(()=>{
     phases.forEach(p=>{
       if(getSessionsFor(p,bk).length===0) return;
-      EX[p][bk].list.forEach((ex,ei)=>{
+      EX[p][bk].list.forEach((_,ei)=>{
         drawChart(`sc-${p}-${bk}-${ei}`, getSessionWeights(p,bk,ei), p);
       });
     });
@@ -1165,6 +1164,25 @@ function drawChart(id, rawData, phaseNum){
 // ─────────────────────────────────────────────
 let timerInt=null, timerTotal=0, timerLeft=0;
 
+function playEndSound(){
+  try{
+    const ctx = new (window.AudioContext||window.webkitAudioContext)();
+    const beep = (freq, start, dur) => {
+      const o = ctx.createOscillator();
+      const g = ctx.createGain();
+      o.connect(g); g.connect(ctx.destination);
+      o.frequency.value = freq;
+      g.gain.setValueAtTime(0.3, ctx.currentTime+start);
+      g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime+start+dur);
+      o.start(ctx.currentTime+start);
+      o.stop(ctx.currentTime+start+dur+0.05);
+    };
+    beep(880, 0, 0.12);
+    beep(1046, 0.15, 0.12);
+    beep(1318, 0.30, 0.25);
+  }catch(e){}
+}
+
 function startTimer(secs, name){
   timerTotal=secs; timerLeft=secs;
   document.getElementById('toExName').textContent=name;
@@ -1173,7 +1191,12 @@ function startTimer(secs, name){
   updateTimerUI();
   timerInt=setInterval(()=>{
     timerLeft--;
-    if(timerLeft<=0){timerLeft=0;clearInterval(timerInt);if(navigator.vibrate)navigator.vibrate([300,100,300]);}
+    if(timerLeft<=0){
+      timerLeft=0;
+      clearInterval(timerInt);
+      if(navigator.vibrate) navigator.vibrate([300,100,300]);
+      playEndSound();
+    }
     updateTimerUI();
   },1000);
 }
@@ -1230,65 +1253,85 @@ function confirmReset(){
 // ─────────────────────────────────────────────
 // INIT
 // ─────────────────────────────────────────────
+window.addEventListener('beforeunload', ()=>{
+  if(!document.getElementById('sessionOverlay').classList.contains('hidden')){
+    saveCurrentStep();
+    // Emergency save: snapshot current session progress
+    const emergencySess = {
+      id: Date.now(),
+      phase: sPhase,
+      block: sBk,
+      date: new Date().toISOString(),
+      weights: {...sessionData.weights},
+      notes: {...sessionData.notes},
+      serieNotes: {...sessionData.serieNotes},
+      prs: [],
+      incomplete: true
+    };
+    // Only save if there's at least one weight entered
+    const hasData = Object.values(sessionData.weights).some(v => v && parseFloat(v) > 0);
+    if(hasData){
+      DATA.sessions.push(emergencySess);
+      try{ localStorage.setItem('sb_v5', JSON.stringify(DATA)); }catch(e){}
+    }
+  }
+});
+
 loadData();
 renderHome();
 renderSessionPicker();
 
-// Détection d'une séance interrompue
-(function checkWip(){
+// ── WIP RECOVERY ─────────────────────────────
+function restoreWIP(){
   try{
-    const raw = localStorage.getItem('sb_wip');
+    const raw = localStorage.getItem('sb_v5_wip');
     if(!raw) return;
     const wip = JSON.parse(raw);
-    if(!wip || !wip.phase || !wip.block) return;
-    const blockLabel = EX[wip.phase]?.[wip.block]?.label;
-    if(!blockLabel) return;
-    // Afficher la bannière de reprise
-    const banner = document.createElement('div');
-    banner.id = 'wipBanner';
-    banner.style.cssText = `position:fixed;top:0;left:0;right:0;z-index:500;background:#1a1a0a;border-bottom:2px solid var(--accent);padding:14px 16px;display:flex;align-items:center;gap:10px;`;
-    banner.innerHTML = `
-      <div style="flex:1;font-size:0.78rem;line-height:1.4">
-        <div style="color:var(--accent);font-family:'Bebas Neue',sans-serif;letter-spacing:2px;font-size:0.95rem">⚡ SÉANCE EN COURS</div>
-        <div style="color:#ccc">Phase ${wip.phase} · ${blockLabel.replace(' — CHARGES +++','')} · Exercice ${wip.idx+1}</div>
-      </div>
-      <button onclick="resumeWip()" style="padding:8px 14px;background:var(--accent);border:none;color:#000;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;cursor:pointer;white-space:nowrap;">REPRENDRE</button>
-      <button onclick="discardWip()" style="padding:8px 10px;background:var(--card);border:1px solid var(--border);color:var(--gray);border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:2px;cursor:pointer;">✕</button>
-    `;
-    document.body.appendChild(banner);
-    // Décaler le contenu pour ne pas être caché
-    document.body.style.paddingTop = '66px';
-  }catch(e){}
-})();
-
-function resumeWip(){
-  try{
-    const raw = localStorage.getItem('sb_wip');
-    if(!raw) return;
-    const wip = JSON.parse(raw);
-    sPhase = wip.phase;
-    sBk = wip.block;
-    sIdx = wip.idx || 0;
-    sessionOrder = wip.order || EX[sPhase][sBk].list.map((_,i)=>i);
-    sessionData = wip.data || {weights:{}, notes:{}};
+    sPhase = wip.phase; sBk = wip.block; sIdx = wip.idx || 0;
+    sessionOrder = EX[sPhase][sBk].list.map((_,i)=>i);
+    sessionData = {
+      weights: wip.weights || {},
+      notes: wip.notes || {},
+      serieNotes: wip.serieNotes || {},
+      prs: []
+    };
     sessionStartTime = wip.startTime || Date.now();
     document.getElementById('soPhaseLabel').textContent = `PHASE ${sPhase} · ${EX[sPhase][sBk].label}`;
     document.getElementById('sessionOverlay').classList.remove('hidden');
     renderSessionStep();
-    dismissWipBanner();
-  }catch(e){ discardWip(); }
+    const banner = document.getElementById('wipBanner');
+    if(banner) banner.remove();
+  }catch(e){ clearWIP(); }
 }
 
-function discardWip(){
-  clearWip();
-  dismissWipBanner();
+function dismissWIP(){
+  clearWIP();
+  const banner = document.getElementById('wipBanner');
+  if(banner) banner.remove();
 }
 
-function dismissWipBanner(){
-  const b = document.getElementById('wipBanner');
-  if(b) b.remove();
-  document.body.style.paddingTop = '';
-}
+(function checkWIP(){
+  try{
+    const raw = localStorage.getItem('sb_v5_wip');
+    if(!raw) return;
+    const wip = JSON.parse(raw);
+    if(!wip.phase || !wip.block) return;
+    const label = EX[wip.phase]?.[wip.block]?.label || '';
+    const banner = document.createElement('div');
+    banner.id = 'wipBanner';
+    banner.style.cssText = `position:fixed;top:0;left:0;right:0;z-index:500;background:var(--purple);padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;`;
+    banner.innerHTML = `
+      <div style="font-size:0.78rem;color:#fff;line-height:1.4">
+        <strong style="font-family:'Bebas Neue',sans-serif;font-size:0.95rem;letter-spacing:2px;">⚡ SÉANCE EN COURS</strong><br>
+        <span style="opacity:0.85">Phase ${wip.phase} · ${label.replace(' — CHARGES +++','')}</span>
+      </div>
+      <div style="display:flex;gap:8px;flex-shrink:0">
+        <button onclick="dismissWIP()" style="background:rgba(255,255,255,0.15);border:none;color:#fff;padding:7px 11px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.8rem;letter-spacing:1.5px;cursor:pointer;">IGNORER</button>
+        <button onclick="restoreWIP()" style="background:#fff;border:none;color:var(--purple);padding:7px 14px;border-radius:6px;font-family:'Bebas Neue',sans-serif;font-size:0.85rem;letter-spacing:1.5px;cursor:pointer;font-weight:700;">REPRENDRE →</button>
+      </div>`;
+    document.body.appendChild(banner);
+  }catch(e){ clearWIP(); }
+})();
 </script>
 </body>
 </html>
